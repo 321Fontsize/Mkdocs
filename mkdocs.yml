@@ -1,0 +1,12 @@
+site_name: Fontsize's Page
+
+theme:
+  name: readthedocs
+
+nav:
+  - Index: index.md
+  - About: about.md
+  - Notes:
+    - Algebra: Notes/Algebra.md
+    - Analysis: Notes/Analysis.md
+    - NumericalMethods: Notes/NumericalMethods.md
