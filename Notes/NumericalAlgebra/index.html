@@ -55,7 +55,7 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">NumericalMethods</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#ch1-ax-b">Ch1 线性方程组的直接解法($Ax = b$)</a>
+    <li class="toctree-l2"><a class="reference internal" href="#ch1-ax-b">Ch1 线性方程组的直接解法(\(Ax = b\))</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#11">1.1 三角形方程的解法</a>
     </li>
@@ -63,7 +63,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#13">1.3 选主元三角分解</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#14-cholesky">1.4 平方根法($Cholesky$分解)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#14-cholesky">1.4 平方根法(\(Cholesky\)分解)</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#15">1.5 拓展</a>
     </li>
@@ -159,79 +159,79 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="numerical-algebra">Numerical Algebra</h1>
-<h2 id="ch1-ax-b">Ch1 线性方程组的直接解法($Ax = b$)</h2>
+<h2 id="ch1-ax-b">Ch1 线性方程组的直接解法(<span class="arithmatex">\(Ax = b\)</span>)</h2>
 <h3 id="11">1.1 三角形方程的解法</h3>
 <ul>
 <li>下三角形——==前代法==</li>
-<li>因为第一行只有$a_{11} \neq 0$，所以先解出$x_1$；</li>
+<li>因为第一行只有<span class="arithmatex">\(a_{11} \neq 0\)</span>，所以先解出<span class="arithmatex">\(x_1\)</span>；</li>
 <li>
-<p>再将$x_1$代入第二行，解出$x_2$。重复以上步骤直至解出$x$。</p>
+<p>再将<span class="arithmatex">\(x_1\)</span>代入第二行，解出<span class="arithmatex">\(x_2\)</span>。重复以上步骤直至解出<span class="arithmatex">\(x\)</span>。</p>
 </li>
 <li>
 <p>上三角形——==回代法==</p>
 </li>
-<li>因为最后一行只有$a_{nn} \neq 0$，所以先解出$x_n$；</li>
-<li>再将$x_n$代入倒数第二行，解出$x_{n-1}$。重复以上步骤直至解出$x$。</li>
+<li>因为最后一行只有<span class="arithmatex">\(a_{nn} \neq 0\)</span>，所以先解出<span class="arithmatex">\(x_n\)</span>；</li>
+<li>再将<span class="arithmatex">\(x_n\)</span>代入倒数第二行，解出<span class="arithmatex">\(x_{n-1}\)</span>。重复以上步骤直至解出<span class="arithmatex">\(x\)</span>。</li>
 </ul>
 <h3 id="12-gaussgauss">1.2 <strong>Gauss</strong>变换与<strong>Gauss</strong>消元法</h3>
 <ul>
-<li>==Gauss变换==的形式
-  $$
-  L_k = \begin{bmatrix}
-  1 &amp; &amp; &amp;\
-  &amp; \ddots &amp; &amp;\
-  &amp; &amp; 1 &amp;\
-  &amp; &amp; -l_{k+1, k}\;\;\;\; 1\
-  &amp; &amp; \vdots &amp; \ddots \
-  &amp; &amp; -l_{n,k}&amp; &amp; 1
-  \end{bmatrix}
-  $$</li>
+<li><strong>Gauss变换</strong>的形式</li>
 </ul>
+<div class="arithmatex">\[
+L_k = \begin{bmatrix}
+1 &amp; &amp; &amp;\\
+&amp; \ddots &amp; &amp;\\
+&amp; &amp; 1 &amp;\\
+&amp; &amp; -l_{k+1, k}\;\;\;\; 1\\
+&amp; &amp; \vdots &amp; \ddots \\
+&amp; &amp; -l_{n,k}&amp; &amp; 1
+\end{bmatrix}
+\]</div>
 <blockquote>
-<p>其实Gauss变换可以看作一个算子，一个特殊的对应的Gauss变换作用于矩阵A，可以将A的第k列转化为$[x_1, x_2, \cdots, x_k, 0, \cdots, 0]^T$.</p>
+<p>其实Gauss变换可以看作一个算子，一个特殊的对应的Gauss变换作用于矩阵A，可以将A的第k列转化为<span class="arithmatex">\([x_1, x_2, \cdots, x_k, 0, \cdots, 0]^T\)</span>.</p>
 </blockquote>
 <ul>
 <li>
-<p>矩阵$A$的==三角分解==：</p>
+<p>矩阵<span class="arithmatex">\(A\)</span>的==三角分解==：</p>
 </li>
 <li>
-<p>令$L = (L_{n-1}L_{n-2}\cdots L_1)^{-1}, U = A^{(n-1)}$，则$A = LU$；</p>
+<p>令<span class="arithmatex">\(L = (L_{n-1}L_{n-2}\cdots L_1)^{-1}, U = A^{(n-1)}\)</span>，则<span class="arithmatex">\(A = LU\)</span>；</p>
 </li>
 <li>
-<p>其中$L$是下三角矩阵，$U$是上三角矩阵</p>
+<p>其中<span class="arithmatex">\(L\)</span>是下三角矩阵，<span class="arithmatex">\(U\)</span>是上三角矩阵</p>
 </li>
 <li>
-<p>三角分解之后，$Ax= b \rightarrow LUx=b \rightarrow Ly=b,Ux=y$</p>
+<p>三角分解之后，<span class="arithmatex">\(Ax= b \rightarrow LUx=b \rightarrow Ly=b,Ux=y\)</span></p>
 </li>
 </ul>
 <h3 id="13">1.3 选主元三角分解</h3>
 <ul>
 <li>全主元消元法</li>
-<li>$U = L_{n-1}P_{n-1}L_{n-2}P_{n-2} \cdots L_1P_1AQ_1 \cdots Q_{n-1}$，其中$P_i, Q_i$均为置换矩阵，$L_i$为Gauss变换。</li>
+<li><span class="arithmatex">\(U = L_{n-1}P_{n-1}L_{n-2}P_{n-2} \cdots L_1P_1AQ_1 \cdots Q_{n-1}\)</span>，其中<span class="arithmatex">\(P_i, Q_i\)</span>均为置换矩阵，<span class="arithmatex">\(L_i\)</span>为Gauss变换。</li>
 <li>
 <p>也就是说，从正式开始消元之前，就已经选过一轮全主元了。</p>
 </li>
 <li>
 <p>==列主元消元法==</p>
 </li>
-<li>只在当前主元这一列的下方选，如现在主元是$a_{kk}$，那么就是从${a_{ik}: k\leq i \leq n}$中选出绝对值最大的一个，然后进行行交换——也就是说，没有全主元方法中的右端的$Q_i$了。</li>
+<li>只在当前主元这一列的下方选，如现在主元是<span class="arithmatex">\(a_{kk}\)</span>，那么就是从<span class="arithmatex">\(\{a_{ik}: k\leq i \leq n\}\)</span>中选出绝对值最大的一个，然后进行行交换——也就是说，没有全主元方法中的右端的<span class="arithmatex">\(Q_i\)</span>了。</li>
 <li>也是从第一步消元前就先选了一轮了。</li>
 </ul>
 <blockquote>
 <p>选主元消去是完全建立在Gauss消元法的基础上的，它只不过是在每一次消去之后，通过对比主元与其他元间的大小进而交换对应的行与列，来确保A的所有顺序主子式均非零。</p>
 </blockquote>
-<h3 id="14-cholesky">1.4 平方根法($Cholesky$分解)</h3>
+<h3 id="14-cholesky">1.4 平方根法(<span class="arithmatex">\(Cholesky\)</span>分解)</h3>
 <ul>
 <li>
-<p>$Ax=b \rightarrow A=LL^T \rightarrow LL^Tx=b \rightarrow Ly=b,L^Tx=y$</p>
+<p><span class="arithmatex">\(Ax=b \rightarrow A=LL^T \rightarrow LL^Tx=b \rightarrow Ly=b,L^Tx=y\)</span></p>
 </li>
 <li>
-<p>改进的平方根法：$A = LDL^T$，不需要开方运算。</p>
+<p>改进的平方根法：<span class="arithmatex">\(A = LDL^T\)</span>，不需要开方运算。</p>
 </li>
 </ul>
 <h3 id="15">1.5 拓展</h3>
 <ul>
-<li>三对角矩阵$\rightarrow$带状矩阵</li>
+<li>三对角矩阵<span class="arithmatex">\(\rightarrow\)</span>带状矩阵</li>
 <li>追赶法求解三对角矩阵</li>
 <li>Doolittle分解，Courant分解</li>
 <li>求逆的方法：Gauss-Jordan消元，构建增广矩阵（将两个矩阵拼起来）。</li>
@@ -251,18 +251,18 @@
 <li>
 <p>矩阵范数可以由向量范数诱导（大部分都是），但也有不是的（Frobenius范数（所有元素平方和开根））;</p>
 </li>
-<li>$||\cdot||<em>1$：列绝值和范数，$||\cdot||</em>{\infty}$：行绝对值和范数</li>
+<li><span class="arithmatex">\(||\cdot||_1\)</span>：列绝值和范数，<span class="arithmatex">\(||\cdot||_{\infty}\)</span>：行绝对值和范数</li>
 <li>
-<p>$||\cdot||<em>2$：谱范数$= \sqrt{\lambda</em>{\max}(A^TA)}$</p>
+<p><span class="arithmatex">\(||\cdot||_2\)</span>：谱范数<span class="arithmatex">\(= \sqrt{\lambda_{\max}(A^TA)}\)</span></p>
 </li>
 <li>
 <p>与矩阵条件数相关的性质与定理有很多，有意思的！</p>
 </li>
 </ul>
 <h3 id="22">2.2 条件数</h3>
-<p>最常用的是矩阵条件数：$cond_A = ||A||\cdot||A^{-1}||$</p>
+<p>最常用的是矩阵条件数：<span class="arithmatex">\(cond_A = ||A||\cdot||A^{-1}||\)</span></p>
 <h3 id="23">2.3 敏度分析</h3>
-<p>敏度分析是说在求解$Ax= b$时，对$A$或$b$有一定的扰动，$x$的变换可以如何表示？或者$x$的变换是可以被控制的吗？</p>
+<p>敏度分析是说在求解<span class="arithmatex">\(Ax= b\)</span>时，对<span class="arithmatex">\(A\)</span>或<span class="arithmatex">\(b\)</span>有一定的扰动，<span class="arithmatex">\(x\)</span>的变换可以如何表示？或者<span class="arithmatex">\(x\)</span>的变换是可以被控制的吗？</p>
 <h3 id="24">2.4 精度估计</h3>
 <ul>
 <li>相对误差与绝对误差的分析</li>
@@ -273,44 +273,44 @@
 <ol>
 <li>定义：</li>
 </ol>
-<p>$$
-x^<em> = \mathop{\arg\min}_\limits{y\in \mathbb{R}^n} ||Ay - b||_2\
-\Longrightarrow x^</em> \in \mathcal{X}_{LS}
-$$</p>
+<div class="arithmatex">\[
+x^* = \mathop{\arg\min}_\limits{y\in \mathbb{R}^n} ||Ay - b||_2\\
+\Longrightarrow x^* \in \mathcal{X}_{LS}
+\]</div>
 <ol>
 <li>
-<p>解的存在唯一性（以下假设$A \in \mathbb{R}^{m\times n}$）</p>
+<p>解的存在唯一性（以下假设<span class="arithmatex">\(A \in \mathbb{R}^{m\times n}\)</span>）</p>
 </li>
 <li>
-<p>$A$的值域$\mathcal{R}(A) = {y\in \mathbb{R}^m: y=Ax, x\in\mathbb{R}^n }$；</p>
+<p><span class="arithmatex">\(A\)</span>的值域<span class="arithmatex">\(\mathcal{R}(A) = \{y\in \mathbb{R}^m: y=Ax, x\in\mathbb{R}^n \}\)</span>；</p>
 <blockquote>
-<p>$\mathcal{R}(A) = span(a_1, a_2, \cdots, a_n), a_i$为$A$的列向量</p>
+<p><span class="arithmatex">\(\mathcal{R}(A) = span(a_1, a_2, \cdots, a_n), a_i\)</span>为<span class="arithmatex">\(A\)</span>的列向量</p>
 </blockquote>
 </li>
 <li>
-<p>$A$的零空间$\mathcal{N}(A) = {x\in \mathbb{R}^n: Ax=0}$；</p>
+<p><span class="arithmatex">\(A\)</span>的零空间<span class="arithmatex">\(\mathcal{N}(A) = \{x\in \mathbb{R}^n: Ax=0\}\)</span>；</p>
 </li>
 <li>
-<p>$S \in \mathbb{R}^n$，其正交补$S^{\perp} = {y\in\mathbb{R}^n:y^Tx=0, \forall x \in S }$。</p>
+<p><span class="arithmatex">\(S \in \mathbb{R}^n\)</span>，其正交补<span class="arithmatex">\(S^{\perp} = \{y\in\mathbb{R}^n:y^Tx=0, \forall x \in S \}\)</span>。</p>
 </li>
 <li>
-<p>LS问题的解总是存在的。解唯一 $\Longleftrightarrow$ $\mathcal{N}(A) = {0}$。</p>
+<p>LS问题的解总是存在的。解唯一 <span class="arithmatex">\(\Longleftrightarrow\)</span> <span class="arithmatex">\(\mathcal{N}(A) = \{0\}\)</span>。</p>
 </li>
 <li>
-<p>求解by正则化方程组/法方程组：将求解$x^*$转化为求解$A^TAx = A^Tb$.</p>
+<p>求解by正则化方程组/法方程组：将求解<span class="arithmatex">\(x^*\)</span>转化为求解<span class="arithmatex">\(A^TAx = A^Tb\)</span>.</p>
 </li>
 </ol>
 <h3 id="32-householder">3.2 Householder变换</h3>
 <ol>
-<li>定义$H = I- 2ww^T$，其中$w \in \mathbb{R}^{n\times 1}, ||w||_2=1$</li>
-<li>$H$的性质：</li>
-<li>对称性：$H^T = H$;</li>
-<li>正交性：$H^TH=I$;</li>
-<li>反射性：$Hx$是$x$关于$w$的垂直超平面（$span{w}^{\perp}$）的镜像反射</li>
-<li>==$H$的求解==：</li>
-<li>$v = x \pm ||x||_2e_1$;</li>
-<li>$w = \frac{v}{||v||_2}$;</li>
-<li>$H = I - 2ww^T = I - \frac{2vv^T}{v^Tv} = I - \beta vv^T, \beta=\frac{2}{v^Tv}$</li>
+<li>定义<span class="arithmatex">\(H = I- 2ww^T\)</span>，其中<span class="arithmatex">\(w \in \mathbb{R}^{n\times 1}, ||w||_2=1\)</span></li>
+<li><span class="arithmatex">\(H\)</span>的性质：</li>
+<li>对称性：<span class="arithmatex">\(H^T = H\)</span>;</li>
+<li>正交性：<span class="arithmatex">\(H^TH=I\)</span>;</li>
+<li>反射性：<span class="arithmatex">\(Hx\)</span>是<span class="arithmatex">\(x\)</span>关于<span class="arithmatex">\(w\)</span>的垂直超平面（<span class="arithmatex">\(span\{w\}^{\perp}\)</span>）的镜像反射</li>
+<li>==<span class="arithmatex">\(H\)</span>的求解==：</li>
+<li><span class="arithmatex">\(v = x \pm ||x||_2e_1\)</span>;</li>
+<li><span class="arithmatex">\(w = \frac{v}{||v||_2}\)</span>;</li>
+<li><span class="arithmatex">\(H = I - 2ww^T = I - \frac{2vv^T}{v^Tv} = I - \beta vv^T, \beta=\frac{2}{v^Tv}\)</span></li>
 </ol>
 <h3 id="33-givens">3.3 Givens变换</h3>
 <blockquote>
@@ -318,10 +318,10 @@ $$</p>
 </blockquote>
 <ol>
 <li>
-<p>G原来是一个单位阵，但第i行第i列与第k列第k行进行了一些操作。$Gy$可以使$y$的某一个分量变为0——利用三角函数性质</p>
+<p>G原来是一个单位阵，但第i行第i列与第k列第k行进行了一些操作。<span class="arithmatex">\(Gy\)</span>可以使<span class="arithmatex">\(y\)</span>的某一个分量变为0——利用三角函数性质</p>
 </li>
 <li>
-<p>==$G$的计算==关键在于理解
+<p>==<span class="arithmatex">\(G\)</span>的计算==关键在于理解
    $$
    \begin{bmatrix}
    cos \;\; sin\
@@ -343,88 +343,88 @@ $$</p>
 <ol>
 <li>定理叙述：</li>
 </ol>
-<p>设$A \in \mathbb{R}^{m\times n}(m \geq n)$，则$A$有QR分解：
+<p>设<span class="arithmatex">\(A \in \mathbb{R}^{m\times n}(m \geq n)\)</span>，则<span class="arithmatex">\(A\)</span>有QR分解：
    $$
    A = Q\begin{bmatrix}R \ 0\end{bmatrix},
    $$
-   其中$Q \in \mathbb{R}^{m\times m}$为正交阵，$R\in \mathbb{R}^{n\times n}$是具有非负对角元的上三角矩阵。且当$m = n$与$A$可逆时，上述分解唯一。</p>
+   其中<span class="arithmatex">\(Q \in \mathbb{R}^{m\times m}\)</span>为正交阵，<span class="arithmatex">\(R\in \mathbb{R}^{n\times n}\)</span>是具有非负对角元的上三角矩阵。且当<span class="arithmatex">\(m = n\)</span>与<span class="arithmatex">\(A\)</span>可逆时，上述分解唯一。</p>
 <ol>
 <li>求解LS问题：
    $$
    \begin{aligned}
-   ||Ax-b||<em>2^2 =&amp; ||Q^TAx - Q^Tb||_2^2\
+   ||Ax-b||_2^2 =&amp; ||Q^TAx - Q^Tb||_2^2\
    =&amp; ||\begin{bmatrix}R \ 0\end{bmatrix}x - Q^Tb||_2^2\
    =&amp; ||\begin{bmatrix}Rx \ 0\end{bmatrix} - \begin{bmatrix}c_1 \ c_2\end{bmatrix}||_2^2\
    &amp;= ||Rx - c_1||_2^2 + ||c_2||_2^2
    \end{aligned}
    $$
-   则$x\in \mathcal{X}</em>{LS} \Longleftrightarrow Rx=c_1$。</li>
+   则<span class="arithmatex">\(x\in \mathcal{X}_{LS} \Longleftrightarrow Rx=c_1\)</span>。</li>
 </ol>
 <h4 id="342-householderqr">3.4.2 利用Householder变换实现QR分解</h4>
 <p>Householder变换可以将一个列向量（无论几维）变换为第一个元素非零而其他元素均为0的列向量。</p>
-<p>有$H_r H_{r-1}\cdots H_2 H_1 A = \begin{bmatrix}R \ 0\end{bmatrix}$，则$Q = H_1 H_2 \cdots H_{r-1}H_r$.</p>
+<p>有<span class="arithmatex">\(H_r H_{r-1}\cdots H_2 H_1 A = \begin{bmatrix}R \\ 0\end{bmatrix}\)</span>，则<span class="arithmatex">\(Q = H_1 H_2 \cdots H_{r-1}H_r\)</span>.</p>
 <h2 id="ch4">Ch4 古典迭代法</h2>
 <h3 id="41">4.1 单步线性定常迭代法</h3>
 <h4 id="411">4.1.1 一般定义</h4>
 <ol>
 <li>
-<p>新的近似解$x_k$是已知近似解$x_{k-1}$的线性函数，并且只与$x_{k-1}$有关</p>
+<p>新的近似解<span class="arithmatex">\(x_k\)</span>是已知近似解<span class="arithmatex">\(x_{k-1}\)</span>的线性函数，并且只与<span class="arithmatex">\(x_{k-1}\)</span>有关</p>
 </li>
 <li>
 <p>有如下形式：
    $$
    x_k = Mx_{k-1} + g
    $$
-   其中$M$是迭代矩阵，$g$是常数项</p>
+   其中<span class="arithmatex">\(M\)</span>是迭代矩阵，<span class="arithmatex">\(g\)</span>是常数项</p>
 </li>
 </ol>
 <h4 id="412-jacobigauss-seidel">4.1.2 Jacobi迭代与Gauss-Seidel迭代</h4>
-<p>考虑$Ax = b$，令$A = D -L -U$，则</p>
+<p>考虑<span class="arithmatex">\(Ax = b\)</span>，令<span class="arithmatex">\(A = D -L -U\)</span>，则</p>
 <ul>
-<li>Jacobi: $M = D^{-1}(L+U), g = D^{-1}b$；</li>
-<li>Gauss-Seidel: $M = (D-L)^{-1}U, g = (D-L)^{-1}b$</li>
+<li>Jacobi: <span class="arithmatex">\(M = D^{-1}(L+U), g = D^{-1}b\)</span>；</li>
+<li>Gauss-Seidel: <span class="arithmatex">\(M = (D-L)^{-1}U, g = (D-L)^{-1}b\)</span></li>
 </ul>
 <p>注意在具体实现时，两种方法的分量计算顺序不尽相同！！！</p>
 <ul>
-<li>Jacobi迭代法是每次完全只用第$k-1$次的，而G-S迭代法是使用混杂的分量！！！</li>
+<li>Jacobi迭代法是每次完全只用第<span class="arithmatex">\(k-1\)</span>次的，而G-S迭代法是使用混杂的分量！！！</li>
 </ul>
 <h4 id="413">4.1.3 收敛性理论</h4>
 <ul>
-<li>（一般性理论）单步线性定常迭代法收敛的充要条件是$M^k \rightarrow 0$，</li>
+<li>（一般性理论）单步线性定常迭代法收敛的充要条件是<span class="arithmatex">\(M^k \rightarrow 0\)</span>，</li>
 <li>
-<p>进一步，充要条件是$\rho(M) &lt; 1$。</p>
+<p>进一步，充要条件是<span class="arithmatex">\(\rho(M) &lt; 1\)</span>。</p>
 </li>
 <li>
 <p>Jacobi迭代法：</p>
 </li>
-<li>若$A$对称，且其对角元均大于0，则Jacobi收敛的充要条件是$A$与$2D-A$均正定。</li>
+<li>若<span class="arithmatex">\(A\)</span>对称，且其对角元均大于0，则Jacobi收敛的充要条件是<span class="arithmatex">\(A\)</span>与<span class="arithmatex">\(2D-A\)</span>均正定。</li>
 <li>G-S迭代法：</li>
-<li>若$A$对称正定，则G-S收敛。</li>
-<li>若$A$严格对角占优或不可约对角占优，则Jacobi和G-S都收敛。</li>
+<li>若<span class="arithmatex">\(A\)</span>对称正定，则G-S收敛。</li>
+<li>若<span class="arithmatex">\(A\)</span>严格对角占优或不可约对角占优，则Jacobi和G-S都收敛。</li>
 </ul>
 <h4 id="414">4.1.4 收敛速度</h4>
-<p>$R_{\infty}(M) = -\ln\rho(M)$</p>
+<p><span class="arithmatex">\(R_{\infty}(M) = -\ln\rho(M)\)</span></p>
 <h3 id="42">4.2 超松弛迭代法</h3>
 <h4 id="421">4.2.1 迭代形式</h4>
-<p>$$
+<div class="arithmatex">\[
 x_{k+1} = L_{\omega}x_k + \omega(D - \omega L)^{-1}b
-$$</p>
-<p>其中$L_{\omega} = (D - \omega L)^{-1}\left[(1-\omega D) + \omega U \right]$称为松弛迭代法的迭代矩阵，$\omega$称为松弛因子：</p>
+\]</div>
+<p>其中<span class="arithmatex">\(L_{\omega} = (D - \omega L)^{-1}\left[(1-\omega D) + \omega U \right]\)</span>称为松弛迭代法的迭代矩阵，<span class="arithmatex">\(\omega\)</span>称为松弛因子：</p>
 <ul>
-<li>$\omega =1 $：G-S；$\omega  &gt;1$：超松弛（SOR）；$\omega &lt; 1$：低松弛。</li>
+<li><span class="arithmatex">\(\omega =1 <span class="arithmatex">\(：G-S；\)</span>\omega  &gt;1\)</span>：超松弛（SOR）；<span class="arithmatex">\(\omega &lt; 1\)</span>：低松弛。</li>
 </ul>
 <h4 id="422">4.2.2 收敛性分析</h4>
 <ul>
 <li>
-<p>SOR迭代法收敛的充要条件是$\rho(L_{\omega}) &lt; 1$；</p>
+<p>SOR迭代法收敛的充要条件是<span class="arithmatex">\(\rho(L_{\omega}) &lt; 1\)</span>；</p>
 </li>
 <li>
-<p>SOR迭代法收敛的必要条件是$0 &lt; \omega &lt; 2$；</p>
+<p>SOR迭代法收敛的必要条件是<span class="arithmatex">\(0 &lt; \omega &lt; 2\)</span>；</p>
 </li>
 <li>
-<p>若$A$严格对角占优或不可约对角占优，且$\omega \in (0,1 )$，则SOR收敛；</p>
+<p>若<span class="arithmatex">\(A\)</span>严格对角占优或不可约对角占优，且<span class="arithmatex">\(\omega \in (0,1 )\)</span>，则SOR收敛；</p>
 </li>
-<li>若$A$是实对称矩阵，则当$\omega \in (0,2)$时，SOR收敛。</li>
+<li>若<span class="arithmatex">\(A\)</span>是实对称矩阵，则当<span class="arithmatex">\(\omega \in (0,2)\)</span>时，SOR收敛。</li>
 </ul>
 <h4 id="423">4.2.3 最佳松弛因子。。。</h4>
               
@@ -463,6 +463,9 @@ $$</p>
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../../search/main.js"></script>
     <script>
         jQuery(function () {
