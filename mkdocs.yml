@@ -9,25 +9,17 @@ nav:
   - Notes:
     - Algebra: Notes/Algebra.md
     - Analysis: Notes/Analysis.md
-    - NumericalMethods: Notes/NumericalAlgebra.md
+    - Numerical Methods: Notes/NumericalAlgebra.md
 
 markdown_extensions:
-  - pymdownx.arithmatex:
+  - pymdownx.arithmatex: # 数学公式内嵌mathjax
       generic: true
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - mdx_truly_sane_lists # 支持嵌套列表
 
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
-# markdown_extensions:
-#   - pymdownx.arithmatex:
-#       generic: true
-
-# extra_javascript:
-#   - javascripts/katex.js
-#   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
-#   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
-
-# extra_css:
-#   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css

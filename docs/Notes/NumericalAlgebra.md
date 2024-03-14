@@ -1,14 +1,15 @@
 # Numerical Algebra
 
-## Ch1 线性方程组的直接解法($Ax = b$)
+## Ch1 线性方程组的直接解法(Ax=b)
 
 ### 1.1 三角形方程的解法
 
-- 下三角形——==前代法==
+- 下三角形——前代法
+
   - 因为第一行只有$a_{11} \neq 0$，所以先解出$x_1$；
   - 再将$x_1$代入第二行，解出$x_2$。重复以上步骤直至解出$x$。
 
-- 上三角形——==回代法==
+- 上三角形——回代法
   - 因为最后一行只有$a_{nn} \neq 0$，所以先解出$x_n$；
   - 再将$x_n$代入倒数第二行，解出$x_{n-1}$。重复以上步骤直至解出$x$。
 
@@ -29,7 +30,7 @@ $$
 
 > 其实Gauss变换可以看作一个算子，一个特殊的对应的Gauss变换作用于矩阵A，可以将A的第k列转化为$[x_1, x_2, \cdots, x_k, 0, \cdots, 0]^T$.
 
-- 矩阵$A$的==三角分解==：
+- 矩阵$A$的三角分解：
 
   - 令$L = (L_{n-1}L_{n-2}\cdots L_1)^{-1}, U = A^{(n-1)}$，则$A = LU$；
   - 其中$L$是下三角矩阵，$U$是上三角矩阵
@@ -42,13 +43,13 @@ $$
   - $U = L_{n-1}P_{n-1}L_{n-2}P_{n-2} \cdots L_1P_1AQ_1 \cdots Q_{n-1}$，其中$P_i, Q_i$均为置换矩阵，$L_i$为Gauss变换。
   - 也就是说，从正式开始消元之前，就已经选过一轮全主元了。
 
-- ==列主元消元法==
+- 列主元消元法
   - 只在当前主元这一列的下方选，如现在主元是$a_{kk}$，那么就是从$\{a_{ik}: k\leq i \leq n\}$中选出绝对值最大的一个，然后进行行交换——也就是说，没有全主元方法中的右端的$Q_i$了。
   - 也是从第一步消元前就先选了一轮了。
 
 > 选主元消去是完全建立在Gauss消元法的基础上的，它只不过是在每一次消去之后，通过对比主元与其他元间的大小进而交换对应的行与列，来确保A的所有顺序主子式均非零。
 
-### 1.4 平方根法($Cholesky$分解)
+### 1.4 平方根法(Cholesky分解)
 
 - $Ax=b \rightarrow A=LL^T \rightarrow LL^Tx=b \rightarrow Ly=b,L^Tx=y$
 
@@ -97,14 +98,14 @@ $$
 
 ### 3.1 定义与解的性质
 
-1. 定义：
+- 定义：
 
 $$
 x^* = \mathop{\arg\min}_\limits{y\in \mathbb{R}^n} ||Ay - b||_2\\
 \Longrightarrow x^* \in \mathcal{X}_{LS}
 $$
 
-1. 解的存在唯一性（以下假设$A \in \mathbb{R}^{m\times n}$）
+- 解的存在唯一性（以下假设$A \in \mathbb{R}^{m\times n}$）
 
    - $A$的值域$\mathcal{R}(A) = \{y\in \mathbb{R}^m: y=Ax, x\in\mathbb{R}^n \}$；
 
@@ -116,7 +117,7 @@ $$
 
    - LS问题的解总是存在的。解唯一 $\Longleftrightarrow$ $\mathcal{N}(A) = \{0\}$。
 
-1. 求解by正则化方程组/法方程组：将求解$x^*$转化为求解$A^TAx = A^Tb$.
+- 求解by正则化方程组/法方程组：将求解$x^*$转化为求解$A^TAx = A^Tb$.
 
 ### 3.2 Householder变换
 
@@ -125,7 +126,7 @@ $$
    1. 对称性：$H^T = H$;
    2. 正交性：$H^TH=I$;
    3. 反射性：$Hx$是$x$关于$w$的垂直超平面（$span\{w\}^{\perp}$）的镜像反射
-3. ==$H$的求解==：
+3. $H$的求解：
    1. $v = x \pm ||x||_2e_1$;
    2. $w = \frac{v}{||v||_2}$;
    3. $H = I - 2ww^T = I - \frac{2vv^T}{v^Tv} = I - \beta vv^T, \beta=\frac{2}{v^Tv}$
@@ -136,50 +137,55 @@ $$
 
 1. G原来是一个单位阵，但第i行第i列与第k列第k行进行了一些操作。$Gy$可以使$y$的某一个分量变为0——利用三角函数性质
 
-2. ==$G$的计算==关键在于理解
-   $$
-   \begin{bmatrix}
-   cos \;\; sin\\
-   -sin \;\; cos
-   \end{bmatrix}
-   \begin{bmatrix}
-   a\\
-   b
-   \end{bmatrix}=
-   \begin{bmatrix}
-   r\\
-   0
-   \end{bmatrix}
-   $$
+2. $G$的计算关键在于理解
+
+$$
+\begin{bmatrix}
+cos \;\; sin\\
+-sin \;\; cos
+\end{bmatrix}
+\begin{bmatrix}
+a\\
+b
+\end{bmatrix}=
+\begin{bmatrix}
+r\\
+0
+\end{bmatrix}
+$$
 
 ### 3.4 正交变换法求解LS问题
 
 #### 3.4.1 QR分解定理
 
-1. 定理叙述：
+- 定理叙述：
 
    设$A \in \mathbb{R}^{m\times n}(m \geq n)$，则$A$有QR分解：
-   $$
-   A = Q\begin{bmatrix}R \\ 0\end{bmatrix},
-   $$
+
+$$
+A = Q\begin{bmatrix}R \\ 0\end{bmatrix},
+$$
+
    其中$Q \in \mathbb{R}^{m\times m}$为正交阵，$R\in \mathbb{R}^{n\times n}$是具有非负对角元的上三角矩阵。且当$m = n$与$A$可逆时，上述分解唯一。
 
-2. 求解LS问题：
-   $$
-   \begin{aligned}
-   ||Ax-b||_2^2 =& ||Q^TAx - Q^Tb||_2^2\\
-   =& ||\begin{bmatrix}R \\ 0\end{bmatrix}x - Q^Tb||_2^2\\
-   =& ||\begin{bmatrix}Rx \\ 0\end{bmatrix} - \begin{bmatrix}c_1 \\ c_2\end{bmatrix}||_2^2\\
-   &= ||Rx - c_1||_2^2 + ||c_2||_2^2
-   \end{aligned}
-   $$
+- 求解LS问题：
+
+$$
+\begin{aligned}
+||Ax-b||_2^2 =& ||Q^TAx - Q^Tb||_2^2\\
+=& ||\begin{bmatrix}R \\ 0\end{bmatrix}x - Q^Tb||_2^2\\
+=& ||\begin{bmatrix}Rx \\ 0\end{bmatrix} - \begin{bmatrix}c_1 \\ c_2\end{bmatrix}||_2^2\\
+&= ||Rx - c_1||_2^2 + ||c_2||_2^2
+\end{aligned}
+$$
+
    则$x\in \mathcal{X}_{LS} \Longleftrightarrow Rx=c_1$。
 
 #### 3.4.2 利用Householder变换实现QR分解
 
-Householder变换可以将一个列向量（无论几维）变换为第一个元素非零而其他元素均为0的列向量。
+- Householder变换可以将一个列向量（无论几维）变换为第一个元素非零而其他元素均为0的列向量。
 
-有$H_r H_{r-1}\cdots H_2 H_1 A = \begin{bmatrix}R \\ 0\end{bmatrix}$，则$Q = H_1 H_2 \cdots H_{r-1}H_r$.
+- 有$H_r H_{r-1}\cdots H_2 H_1 A = \begin{bmatrix}R \\ 0\end{bmatrix}$，则$Q = H_1 H_2 \cdots H_{r-1}H_r$.
 
 ## Ch4 古典迭代法
 
@@ -231,7 +237,7 @@ $$
 
 其中$L_{\omega} = (D - \omega L)^{-1}\left[(1-\omega D) + \omega U \right]$称为松弛迭代法的迭代矩阵，$\omega$称为松弛因子：
 
-- $\omega =1 $：G-S；$\omega  >1$：超松弛（SOR）；$\omega < 1$：低松弛。
+- $\omega =1$：G-S迭代法；$\omega>1$：超松弛（SOR）；$\omega < 1$：低松弛。
 
 #### 4.2.2 收敛性分析
 
@@ -242,4 +248,4 @@ $$
 - 若$A$严格对角占优或不可约对角占优，且$\omega \in (0,1 )$，则SOR收敛；
 - 若$A$是实对称矩阵，则当$\omega \in (0,2)$时，SOR收敛。
 
-#### 4.2.3 最佳松弛因子。。。
+#### 4.2.3 最佳松弛因子^^^
