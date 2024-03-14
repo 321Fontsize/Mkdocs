@@ -125,11 +125,45 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#422">4.2.2 收敛性分析</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#423">4.2.3 最佳松弛因子^^^</a>
+    <li class="toctree-l4"><a class="reference internal" href="#423">4.2.3 最佳松弛因子</a>
     </li>
         </ul>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ch5">Ch5 共轭梯度法</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#51">5.1 最速下降法</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#52-c-g">5.2 共轭梯度法（C-G）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#521">5.2.1 与最速下降法作比较</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#522">5.2.2 算法</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#523">5.2.3 “共轭”的体现</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ch6">Ch6 非对称特征值问题的计算方法</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#61">6.1 代数基本知识与概念</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#611">6.1.1 矩阵概念与性质</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#612">6.1.2 相关定理</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#62">6.2 幂法</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#63-qr">6.3 QR方法</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ch7">Ch7 对称特征值问题的计算方法</a>
     </li>
     </ul>
                   </li>
@@ -381,27 +415,62 @@ A = Q\begin{bmatrix}R \\ 0\end{bmatrix},
 <h3 id="41">4.1 单步线性定常迭代法</h3>
 <h4 id="411">4.1.1 一般定义</h4>
 <ol>
-<li>
-<p>新的近似解<span class="arithmatex">\(x_k\)</span>是已知近似解<span class="arithmatex">\(x_{k-1}\)</span>的线性函数，并且只与<span class="arithmatex">\(x_{k-1}\)</span>有关</p>
-</li>
-<li>
-<p>有如下形式：
-   $$
-   x_k = Mx_{k-1} + g
-   $$
-   其中<span class="arithmatex">\(M\)</span>是迭代矩阵，<span class="arithmatex">\(g\)</span>是常数项</p>
-</li>
+<li>新的近似解<span class="arithmatex">\(x_k\)</span>是已知近似解<span class="arithmatex">\(x_{k-1}\)</span>的线性函数，并且只与<span class="arithmatex">\(x_{k-1}\)</span>有关；</li>
+<li>单步线性定常迭代法有如下形式：</li>
 </ol>
+<div class="arithmatex">\[
+x_k = Tx_{k-1} + g \tag{4.1}
+\]</div>
+<p>其中<span class="arithmatex">\(T\)</span>是迭代矩阵，<span class="arithmatex">\(g\)</span>是常数项</p>
 <h4 id="412-jacobigauss-seidel">4.1.2 Jacobi迭代与Gauss-Seidel迭代</h4>
 <p>考虑<span class="arithmatex">\(Ax = b\)</span>，令<span class="arithmatex">\(A = D -L -U\)</span>，则</p>
 <ul>
-<li>Jacobi: <span class="arithmatex">\(M = D^{-1}(L+U), g = D^{-1}b\)</span>；</li>
-<li>Gauss-Seidel: <span class="arithmatex">\(M = (D-L)^{-1}U, g = (D-L)^{-1}b\)</span></li>
+<li>Jacobi: </li>
 </ul>
-<p>注意在具体实现时，两种方法的分量计算顺序不尽相同！！！</p>
+<div class="arithmatex">\[
+T_{J} = D^{-1}(L+U), g_J = D^{-1}b \tag{4.2}
+\]</div>
 <ul>
-<li>Jacobi迭代法是每次完全只用第<span class="arithmatex">\(k-1\)</span>次的，而G-S迭代法是使用混杂的分量！！！</li>
+<li>Weighted Jacobi: </li>
 </ul>
+<div class="arithmatex">\[
+x_{*} = T_{J}x^{(k)} + g_J \Longrightarrow x^{(k+1)} = (1-\omega)x^{(k)} + \omega x_{*}
+\]</div>
+<div class="arithmatex">\[
+T_{\omega} = (1-\omega)I + \omega D^{-1}(L+U) \tag{4.3}
+\]</div>
+<ul>
+<li>Gauss-Seidel: </li>
+</ul>
+<div class="arithmatex">\[
+T_{GS} = (D-L)^{-1}U, g_{GS} = (D-L)^{-1}b \tag{4.4}
+\]</div>
+<ul>
+<li>Backward G-S: </li>
+</ul>
+<div class="arithmatex">\[
+T_{BGS} = (D-U)^{-1}L, g_{BGS} = (D-U)^{-1}b \tag{4.5}
+\]</div>
+<p>注意在具体实现时，两种方法的分量计算顺序不尽相同！！！</p>
+<p>Jacobi迭代法是每次完全只用第<span class="arithmatex">\(k-1\)</span>次的，而G-S迭代法是使用混杂的分量：</p>
+<ul>
+<li>Jacobi：</li>
+</ul>
+<div class="arithmatex">\[
+a_{ii}x_i^{(k+1)} = - \sum_{j\neq i;\;j=1}^{n} a_{ij}x_j^{(k)} + b_i \tag{4.6}
+\]</div>
+<ul>
+<li>G-S：</li>
+</ul>
+<div class="arithmatex">\[
+a_{ii}x_i^{(k+1)} = - \sum_{j=1}^{i-1} a_{ij}x_j^{(k+1)} - \sum_{j=i+1}^{n} a_{ij}x_j^{(k)} + b_i \tag{4.7}
+\]</div>
+<ul>
+<li>Backward G-S：</li>
+</ul>
+<div class="arithmatex">\[
+a_{ii}x_i^{(k+1)} = - \sum_{j=1}^{i-1} a_{ij}x_j^{(k)} - \sum_{j=i+1}^{n} a_{ij}x_j^{(k+1)} + b_i \tag{4.8}
+\]</div>
 <h4 id="413">4.1.3 收敛性理论</h4>
 <ul>
 <li>（一般性理论）单步线性定常迭代法收敛的充要条件是<span class="arithmatex">\(M^k \rightarrow 0\)</span>，<ul>
@@ -424,12 +493,14 @@ A = Q\begin{bmatrix}R \\ 0\end{bmatrix},
 <p><span class="arithmatex">\(R_{\infty}(M) = -\ln\rho(M)\)</span></p>
 <h3 id="42">4.2 超松弛迭代法</h3>
 <h4 id="421">4.2.1 迭代形式</h4>
+<p>分量形式：<span class="arithmatex">\(x_i^{(k+1)} = (1-\omega)x^{(k)}_i + \omega x_i^{GS}, \; where\; x_i^{GS} \;equals \;x_i^{(k+1)}\; in\; (4.7).\)</span></p>
+<p>总形式：</p>
 <div class="arithmatex">\[
-x_{k+1} = L_{\omega}x_k + \omega(D - \omega L)^{-1}b
+x_{k+1} = T_{SOR}x_k + \omega(D - \omega L)^{-1}b \tag{4.9}
 \]</div>
-<p>其中<span class="arithmatex">\(L_{\omega} = (D - \omega L)^{-1}\left[(1-\omega D) + \omega U \right]\)</span>称为松弛迭代法的迭代矩阵，<span class="arithmatex">\(\omega\)</span>称为松弛因子：</p>
+<p>其中<span class="arithmatex">\(T_{SOR} = (D - \omega L)^{-1}\left[(1-\omega)D + \omega U \right]\)</span>称为松弛迭代法的迭代矩阵，<span class="arithmatex">\(\omega\)</span>称为松弛因子：</p>
 <ul>
-<li><span class="arithmatex">\(\omega =1\)</span>：G-S迭代法；<span class="arithmatex">\(\omega&gt;1\)</span>：超松弛（SOR）；<span class="arithmatex">\(\omega &lt; 1\)</span>：低松弛。</li>
+<li><span class="arithmatex">\(\omega =1\)</span>：G-S迭代法；<span class="arithmatex">\(\omega&gt;1\)</span>：超松弛（SOR）；<span class="arithmatex">\(\omega &lt; 1\)</span>：低松弛.</li>
 </ul>
 <h4 id="422">4.2.2 收敛性分析</h4>
 <ul>
@@ -442,7 +513,93 @@ x_{k+1} = L_{\omega}x_k + \omega(D - \omega L)^{-1}b
 <li>若<span class="arithmatex">\(A\)</span>严格对角占优或不可约对角占优，且<span class="arithmatex">\(\omega \in (0,1 )\)</span>，则SOR收敛；</li>
 <li>若<span class="arithmatex">\(A\)</span>是实对称矩阵，则当<span class="arithmatex">\(\omega \in (0,2)\)</span>时，SOR收敛。</li>
 </ul>
-<h4 id="423">4.2.3 最佳松弛因子^^^</h4>
+<h4 id="423">4.2.3 最佳松弛因子</h4>
+<p>随着<span class="arithmatex">\(\omega\)</span>从0开始增加，<span class="arithmatex">\(\rho(T_{SOR})\)</span>逐渐减小，直至</p>
+<div class="arithmatex">\[
+\omega = \omega_{opt} = \frac{2}{1 + \sqrt{1 - \rho^2(B)}}
+\]</div>
+<p>此时<span class="arithmatex">\(\rho(T_{SOR})\)</span>达到极小：</p>
+<div class="arithmatex">\[
+\rho(T_{opt}) = \frac{1 - \sqrt{1 - \rho^2(B)}}{1 + \sqrt{1 - \rho^2(B)}}
+\]</div>
+<p>此后<span class="arithmatex">\(\omega\)</span>增加，<span class="arithmatex">\(\rho\)</span>也随之增加。</p>
+<h2 id="ch5">Ch5 共轭梯度法</h2>
+<h3 id="51">5.1 最速下降法</h3>
+<p>亦称梯度下降法</p>
+<ul>
+<li>定义二次泛函<span class="arithmatex">\(\psi(x) = x^TAx - 2b^Tx\)</span>，若A对称正定，则求解<span class="arithmatex">\(Ax = b\)</span>的解等价于求解二次泛函<span class="arithmatex">\(\psi(x)\)</span>的极小值点。</li>
+</ul>
+<ul>
+<li>
+<p>求解思路：给定<span class="arithmatex">\(x^{(0)}\)</span>，依次求<span class="arithmatex">\(x^{(1)}, x^{(2)}, \cdots\)</span>，s.t. <span class="arithmatex">\(\psi(x^{(k+1)} &lt; \psi(x^{(k)})\)</span></p>
+<p><span class="arithmatex">\(\rightarrow\)</span>给定<span class="arithmatex">\(x^{(0)}\)</span>，在方向<span class="arithmatex">\(x^{(0)} + \alpha p^{(0)}\)</span>上求<span class="arithmatex">\(\psi(x)\)</span>的极小值点<span class="arithmatex">\(x^{(1)}\)</span>；</p>
+<p><span class="arithmatex">\(\rightarrow \cdots\)</span></p>
+<ul>
+<li>问题转化为两要点：<ul>
+<li>如何确定方向序列<span class="arithmatex">\(\{ p^{(k)}\}\)</span>；</li>
+<li>如何求得步长<span class="arithmatex">\(\alpha\)</span>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>算法：</p>
+<p>先要取<span class="arithmatex">\(x^{(0)} \in \mathbb{R}^n, r^{(0)} = b - Ax^{(0)}\)</span>，之后按如下方式做迭代：</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+\alpha_k =&amp; \frac{(r^{(k)}, r^{(k)})}{(r^{(k)}, Ar^{(k)})}\\
+x^{(k+1)} =&amp; x^{(k)} + \alpha_k r^{(k)}\\
+r^{(k+1)} =&amp; b - Ax^{(k+1)}
+\end{aligned}
+\right.
+\]</div>
+<h3 id="52-c-g">5.2 共轭梯度法（C-G）</h3>
+<h4 id="521">5.2.1 与最速下降法作比较</h4>
+<ol>
+<li>
+<p>相同点：第一步仍然要取<span class="arithmatex">\(x^{(0)} \in \mathbb{R}^n, r^{(0)} = b - Ax^{(0)}\)</span>；</p>
+</li>
+<li>
+<p>不同点：在第<span class="arithmatex">\(k+1(k \geq 1)\)</span>步中，”下山“方向不再取负梯度方向。</p>
+<ol>
+<li>而是在过点<span class="arithmatex">\(x^{(k)}\)</span>由向量<span class="arithmatex">\(r^{(k)}\)</span>和<span class="arithmatex">\(p^{(k-1)}\)</span>所张成的平面内选取<span class="arithmatex">\(\psi(x)\)</span>下降最快的方向：</li>
+</ol>
+</li>
+</ol>
+<div class="arithmatex">\[
+\pi = \{x = x^{(k)} + \xi r^{(k)} + \eta p^{(k-1)}: \xi, \eta \in \mathbb{R} \}
+\]</div>
+<h4 id="522">5.2.2 算法</h4>
+<ol>
+<li><span class="arithmatex">\(\alpha_k = \frac{(r^{(k)}, p^{(k)})}{(p^{(k)}, Ap^{(k)})}\)</span></li>
+<li><span class="arithmatex">\(x^{(k+1)} = x^{(k)} + \alpha p^{(k)}\)</span></li>
+<li><span class="arithmatex">\(r^{(k+1)} = b - Ax^{k+1}\)</span></li>
+<li><span class="arithmatex">\(\beta_k = -\frac{(r^{(k+1)}, Ap^{(k)})}{(p^{(k)}, Ap^{(k)})}\)</span></li>
+<li><span class="arithmatex">\(p^{(k+1)} = r^{(k+1)} + \beta_k p^{(k)}\)</span></li>
+</ol>
+<p>初始值：<span class="arithmatex">\(\forall x^{(0)}, p^{(0)} = r^{(0)} = b - Ax^{(0)}, \alpha_0 = \frac{(r^{(0)}, r^{(0)})}{(p^{(0)}, Ap^{(0)})}, x^{(1)} = x^{(0)} + \alpha_0 p^{(0)}, r^{(1)} = b - Ax^{(1)}\)</span>。</p>
+<h4 id="523">5.2.3 “共轭”的体现</h4>
+<h2 id="ch6">Ch6 非对称特征值问题的计算方法</h2>
+<h3 id="61">6.1 代数基本知识与概念</h3>
+<h4 id="611">6.1.1 矩阵概念与性质</h4>
+<ol>
+<li>特征多项式，谱集</li>
+<li>代数重数，几何重数</li>
+<li>相似（变换）</li>
+</ol>
+<h4 id="612">6.1.2 相关定理</h4>
+<ol>
+<li><strong>Jordan分解定理</strong></li>
+<li><strong>Schur分解定理</strong></li>
+</ol>
+<h3 id="62">6.2 幂法</h3>
+<h3 id="63-qr">6.3 QR方法</h3>
+<h2 id="ch7">Ch7 对称特征值问题的计算方法</h2>
               
             </div>
           </div><footer>
