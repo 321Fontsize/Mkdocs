@@ -159,11 +159,31 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#62">6.2 幂法</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#63-qr">6.3 QR方法</a>
+    <li class="toctree-l3"><a class="reference internal" href="#63-qr">6.3 计算矩阵特征值的QR方法</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#631-qrqr">6.3.1 QR迭代：QR分解+反分解</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#632-a">6.3.2 计算A的特征值的实现</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#64-qr">6.4 实用的QR方法</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#641">6.4.1 带原点位移方法</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#642-qr">6.4.2 双重步位移QR方法</a>
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#ch7">Ch7 对称特征值问题的计算方法</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#71-qr">7.1 对称QR方法</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#72">7.2 奇异值分解定理</a>
+    </li>
+        </ul>
     </li>
     </ul>
                   </li>
@@ -552,7 +572,7 @@ x_{k+1} = T_{SOR}x_k + \omega(D - \omega L)^{-1}b \tag{4.9}
 <div class="arithmatex">\[
 \left\{
 \begin{aligned}
-\alpha_k =&amp; \frac{(r^{(k)}, r^{(k)})}{(r^{(k)}, Ar^{(k)})}\\
+\alpha_k =&amp; \frac{\langle r^{(k)}, r^{(k)}\rangle}{\langle r^{(k)}, Ar^{(k)}\rangle}\\
 x^{(k+1)} =&amp; x^{(k)} + \alpha_k r^{(k)}\\
 r^{(k+1)} =&amp; b - Ax^{(k+1)}
 \end{aligned}
@@ -576,30 +596,158 @@ r^{(k+1)} =&amp; b - Ax^{(k+1)}
 \]</div>
 <h4 id="522">5.2.2 算法</h4>
 <ol>
-<li><span class="arithmatex">\(\alpha_k = \frac{(r^{(k)}, p^{(k)})}{(p^{(k)}, Ap^{(k)})}\)</span></li>
+<li><span class="arithmatex">\(\alpha_k = \frac{\langle r^{(k)}, p^{(k)}\rangle}{\langle p^{(k)}, Ap^{(k)}\rangle}\)</span></li>
 <li><span class="arithmatex">\(x^{(k+1)} = x^{(k)} + \alpha p^{(k)}\)</span></li>
 <li><span class="arithmatex">\(r^{(k+1)} = b - Ax^{k+1}\)</span></li>
-<li><span class="arithmatex">\(\beta_k = -\frac{(r^{(k+1)}, Ap^{(k)})}{(p^{(k)}, Ap^{(k)})}\)</span></li>
+<li><span class="arithmatex">\(\beta_k = -\frac{\langle r^{(k+1)}, Ap^{(k)}\rangle}{\langle p^{(k)}, Ap^{(k)}\rangle}\)</span></li>
 <li><span class="arithmatex">\(p^{(k+1)} = r^{(k+1)} + \beta_k p^{(k)}\)</span></li>
 </ol>
-<p>初始值：<span class="arithmatex">\(\forall x^{(0)}, p^{(0)} = r^{(0)} = b - Ax^{(0)}, \alpha_0 = \frac{(r^{(0)}, r^{(0)})}{(p^{(0)}, Ap^{(0)})}, x^{(1)} = x^{(0)} + \alpha_0 p^{(0)}, r^{(1)} = b - Ax^{(1)}\)</span>。</p>
+<p>初始值：<span class="arithmatex">\(\forall x^{(0)}, p^{(0)} = r^{(0)} = b - Ax^{(0)}, \alpha_0 = \frac{\langle r^{(0)}, r^{(0)}\rangle}{\langle p^{(0)}, Ap^{(0)}\rangle}, x^{(1)} = x^{(0)} + \alpha_0 p^{(0)}, r^{(1)} = b - Ax^{(1)}\)</span>。</p>
 <h4 id="523">5.2.3 “共轭”的体现</h4>
+<ol>
+<li>由C-G法得到的向量组<span class="arithmatex">\(\{r^{(i)}\}\)</span>与<span class="arithmatex">\(\{p^{(i)} \}\)</span>有以下性质：<ol>
+<li><span class="arithmatex">\(\langle p^{(i)}, r^{(j)}\rangle = 0, 0 \leq i &lt; j \leq k\)</span>；</li>
+<li><span class="arithmatex">\(\langle r^{(i)}, r^{(j)} \rangle = 0, 0 \leq i,j \leq k, i\neq j\)</span>；</li>
+<li><span class="arithmatex">\(\langle p^{(i)}, Ap^{(j)} \rangle = 0, 0 \leq i,j \leq k, i\neq j\)</span>；</li>
+<li><span class="arithmatex">\(span\{r^{(0)}, \cdots, r^{(k)} \} = span\{p^{(0)}, \cdots, p^{(k)} \} = \mathcal{K}(A, r^{(0)}, k+1)\)</span>，其中<span class="arithmatex">\(\mathcal{K}(A, r^{(0)}, k+1) = span\{r^{(0)}, Ar^{(0)}, \cdots, A^k r^{(0)} \}\)</span>，通常称之为<span class="arithmatex">\(Krylov\)</span>子空间。</li>
+</ol>
+</li>
+</ol>
 <h2 id="ch6">Ch6 非对称特征值问题的计算方法</h2>
 <h3 id="61">6.1 代数基本知识与概念</h3>
 <h4 id="611">6.1.1 矩阵概念与性质</h4>
 <ol>
-<li>特征多项式，谱集</li>
-<li>代数重数，几何重数</li>
-<li>相似（变换）</li>
+<li>
+<p>特征值、特征多项式，谱集</p>
+<ol>
+<li>
+<p>特征值：<span class="arithmatex">\(A \in \mathbb{C}^{n\times n},\)</span> 存在<span class="arithmatex">\(\lambda \in \mathbb{C}, s.t. Ax = \lambda x(x \neq 0)\)</span>；</p>
+</li>
+<li>
+<p>特征多项式：<span class="arithmatex">\(P_{A}(\lambda) = det(\lambda I - A) = (\lambda - \lambda_1)^{n_1} \cdots(\lambda - \lambda_r)^{n_r}\)</span>，其中<span class="arithmatex">\(n_1 + \cdots + n_r = n\)</span>，<span class="arithmatex">\(\lambda_1, \cdots , \lambda_r\)</span>互异，且称<span class="arithmatex">\(\lambda_A = \{\lambda_1, \cdots, \lambda_r \}\)</span>为A的谱集。</p>
+<p><span class="arithmatex">\(n_i\)</span>称为<span class="arithmatex">\(\lambda_i\)</span>的代数重数（简称重数），而<span class="arithmatex">\(m_i = n - rank(\lambda_i I - A)\)</span>称为<span class="arithmatex">\(\lambda_i\)</span>的几何重数（有<span class="arithmatex">\(m_i \leq n_i\)</span>）。</p>
+</li>
+<li>
+<p><span class="arithmatex">\(n_i = 1\)</span>的<span class="arithmatex">\(\lambda_i\)</span>称为单特征值，否则称为重特征值。如果<span class="arithmatex">\(n_i = m_i\)</span>，则称<span class="arithmatex">\(\lambda_i\)</span>为A的一个半单特征值。</p>
+<p>显然，单特征值必是半单特征值。</p>
+</li>
+<li>
+<p>如果A所有特征值半单，则称A是非亏损的。</p>
+<p>A非亏损<span class="arithmatex">\(\Longleftrightarrow\)</span><span class="arithmatex">\(A\)</span>有n个线性无关的特征向量（即A可对角化）。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>相似（变换）</p>
+<ol>
+<li>相似的矩阵具有相同的特征值；</li>
+<li>A与B相似：<span class="arithmatex">\(B = P^{-1}AP\)</span>。且若<span class="arithmatex">\(x\)</span>为<span class="arithmatex">\(A\)</span>的特征向量，则<span class="arithmatex">\(Px\)</span>是<span class="arithmatex">\(B\)</span>的特征向量</li>
+</ol>
+</li>
 </ol>
 <h4 id="612">6.1.2 相关定理</h4>
 <ol>
-<li><strong>Jordan分解定理</strong></li>
-<li><strong>Schur分解定理</strong></li>
+<li>
+<p><strong>Jordan分解定理</strong></p>
+<p>设<span class="arithmatex">\(A \in \mathbb{C}^{n\times n}\)</span>，有<span class="arithmatex">\(r\)</span>个互不相同的特征值<span class="arithmatex">\(\{\lambda_1, \cdots,\lambda_r \}\)</span>，其重数分别为<span class="arithmatex">\(n(\lambda_1), \cdots, n(\lambda_r)\)</span>，则必存在一个非奇异矩阵<span class="arithmatex">\(P\in \mathbb{C}^{n\times n}\)</span>，使得</p>
+</li>
+</ol>
+<div class="arithmatex">\[
+P^{-1}AP = \begin{bmatrix}J(\lambda_1)&amp; &amp; &amp; &amp;\\
+&amp; J(\lambda_2) &amp; &amp; \\
+&amp; &amp; \ddots &amp;\\
+&amp; &amp; &amp; J(\lambda_r)
+\end{bmatrix}
+\]</div>
+<p>其中<span class="arithmatex">\(J(\lambda_i) = diag(J_1(\lambda_i), \cdots, J_{k_i}(\lambda_i)) \in \mathbb{C}^{n(\lambda_i) \times n(\lambda_i)}, i = 1, \cdots, r\)</span>，其中</p>
+<div class="arithmatex">\[
+J_j(\lambda_i) = \begin{bmatrix}\lambda_i \quad1 &amp; &amp;\\
+&amp; \lambda_i \quad\ddots &amp;\\
+&amp; &amp; \ddots 1\\
+&amp; &amp; &amp; \lambda_i
+\end{bmatrix} \in\mathbb{C}^{n_j(\lambda_i) \times n_j(\lambda_i)}, j = 1, \cdots, k_i
+\]</div>
+<div class="arithmatex">\[
+n_1(\lambda_i) + \cdots + n_{k_i}(\lambda_i) = n(\lambda_i), i = 1, \cdots, r;
+\]</div>
+<p>上述定理中的矩阵J称为A的Jordan标准形，其中每个子矩阵<span class="arithmatex">\(J_i(\lambda_i)\)</span>称为Jordan块。</p>
+<ol>
+<li>
+<p><strong>Schur分解定理</strong></p>
+<p>设<span class="arithmatex">\(A \in \mathbb{C}^{n \times n}\)</span>，则存在酉矩阵<span class="arithmatex">\(U \in \mathbb{C}^{n\times n}\)</span>，使得<span class="arithmatex">\(U^* AU = T\)</span>，其中<span class="arithmatex">\(T\)</span>是上三角阵。</p>
+<p>且适当选取U，可以T的对角元按任意指定序列排序。</p>
+</li>
+<li>
+<p>实数域上的<strong>Schur分解定理</strong></p>
+<p>设<span class="arithmatex">\(A \in \mathbb{R}^{n \times n}\)</span>，则存在正交阵<span class="arithmatex">\(Q \in \mathbb{R}^{n\times n}\)</span>，使得<span class="arithmatex">\(Q^* AQ = \begin{bmatrix}R_{11}&amp; R_{12}&amp; \cdots&amp; R_{1m}&amp;\\ &amp; \ddots &amp; &amp; \vdots \\ &amp; &amp; &amp; R_{mm} \end{bmatrix}\)</span>，其中<span class="arithmatex">\(R_{ii}\)</span>或是一个实数，或是一个具有一对共轭复数特征值的二阶方阵。</p>
+</li>
 </ol>
 <h3 id="62">6.2 幂法</h3>
-<h3 id="63-qr">6.3 QR方法</h3>
+<h3 id="63-qr">6.3 计算矩阵特征值的QR方法</h3>
+<h4 id="631-qrqr">6.3.1 QR迭代：QR分解+反分解</h4>
+<ol>
+<li>
+<p>回顾QR分解：见<strong>3.4.1</strong></p>
+</li>
+<li>
+<p>基本迭代与收敛性</p>
+<ol>
+<li>令<span class="arithmatex">\(A_0 =A\)</span>，作分解<span class="arithmatex">\(A_0 = Q_1R_1\)</span>，令<span class="arithmatex">\(A_1 = R_1Q_1\)</span>，则<span class="arithmatex">\(A_0\)</span>与<span class="arithmatex">\(A_1\)</span>正交相似（<span class="arithmatex">\(A_1 = Q_1^T Q_1 R_1Q_1 = Q_1^TA_0Q_1\)</span>）；</li>
+<li>作分解<span class="arithmatex">\(A_1 = Q_2R_2\)</span>，令<span class="arithmatex">\(A_2 = R_2 Q_2\)</span>；</li>
+<li><span class="arithmatex">\(\cdots\)</span></li>
+<li>作分解<span class="arithmatex">\(A_m = Q_{m+1}R_{m+1}\)</span>，令<span class="arithmatex">\(A_{m+1} = R_{m+1} Q_{m+1}\)</span>；</li>
+</ol>
+<p>得到矩阵序列${A_m}：两两正交相似。</p>
+<p>令<span class="arithmatex">\(\hat{Q}_m = Q_1 \cdots Q_m, \hat{R}_m = R_m \cdots R_1\)</span>，则有<span class="arithmatex">\(\hat{Q}_m \hat{R}_m = A_m\)</span>。</p>
+</li>
+<li>
+<p>上述的<span class="arithmatex">\(A_m = [\alpha_{ij}^{(m)}]\)</span>的对角线以下的元素趋于0，而对角元趋于A的各个特征值（特征值由大到小从左上方开始排列）。</p>
+</li>
+</ol>
+<h4 id="632-a">6.3.2 计算A的特征值的实现</h4>
+<h5 id="6321-ahessenberg">6.3.2.1 将A先转化为上Hessenberg矩阵</h5>
+<p>实际计算时，为了减少每次迭代所需的运算量，总是将原矩阵A经相似变换约化为一个<strong>准上三角阵</strong>，再对约化后的矩阵进行QR迭代。</p>
+<ol>
+<li>上Hessenberg矩阵：</li>
+</ol>
+<div class="arithmatex">\[
+H = \begin{bmatrix}h_{11}&amp; h_{12}&amp; h_{13}&amp; \cdots&amp; h_{1,n-1}&amp; h_{1n}&amp;\\
+h_{21}&amp; h_{22}&amp; h_{23}&amp; \cdots&amp; h_{2,n-1}&amp; h_{2n}&amp;\\
+&amp; h_{32}&amp; h_{33}&amp; \cdots&amp; h_{3,n-1}&amp; h_{3n}&amp;\\
+&amp; &amp; \ddots&amp; \ddots&amp; \vdots&amp; \vdots&amp;\\
+&amp; &amp; &amp; \ddots&amp; \ddots&amp; \vdots&amp;\\
+&amp; &amp; &amp; &amp; h_{n,n-1}&amp; h_{nn}
+\end{bmatrix}
+\]</div>
+<ol>
+<li>
+<p>上Hessenberg分解：</p>
+<p>现令<span class="arithmatex">\(Q_0 = H_1H_2 \cdots H_{n-2}\)</span>，则有<span class="arithmatex">\(Q_0^TAQ_0 = H\)</span>，称这个式子为A的上Hessenberg分解。</p>
+<p>其中<span class="arithmatex">\(Q_0\)</span>是多个Householder变换的乘积，故<span class="arithmatex">\(Q_0\)</span>是正交阵。</p>
+</li>
+<li>
+<p><span class="arithmatex">\(Q_0\)</span>的具体计算：</p>
+<ol>
+<li>首先<span class="arithmatex">\(H_1A\)</span>会使得A的第一列只剩<span class="arithmatex">\(a_{11} \neq 0\)</span>，但需要注意的是，我们需要进行右乘，即<span class="arithmatex">\(H_1AH_1\)</span>，这一步操作会使A的第一列0元素变为非零元素——这不是我们想要的。</li>
+<li>所以我们取<span class="arithmatex">\(H_1 = \begin{bmatrix}1&amp; 0\\ 0&amp; \hat{H_1} \end{bmatrix}\)</span> ，则<span class="arithmatex">\(H_1AH_1 = \begin{bmatrix}a_{11}&amp; a_2^T\hat{H_1}\\ \hat{H_1}a_1&amp; \hat{H_1}A_{22}\hat{H_1} \end{bmatrix}\)</span>，其中<span class="arithmatex">\(a_1^T = [a_{21}, a_{31}, \cdots, a_{n1}], a_2^T = [a_{12}, a_{13}, \cdots , a_{1n}]\)</span>。</li>
+<li>最佳方案是取<span class="arithmatex">\(\hat{H_1}, s.t. \hat{H_1}a_1 = pe_1, p\in \mathbb{R}\)</span>。（其实就是使<span class="arithmatex">\(H_1AH_1\)</span>的第一列只有前两个非零元素）。</li>
+<li>对<span class="arithmatex">\(A_{22}\)</span>做类似的操作。</li>
+</ol>
+</li>
+</ol>
+<h5 id="6322-hessenbergqr">6.3.2.2 上Hessenberg的QR迭代</h5>
+<p>因为H是一个准上三角阵（零元比较多），所以它的QR分解主要依靠Givens变换——也就是说，它的QR分解中的Q特指Givens变换。别忘了反分解（i.e.，要乘回去）。</p>
+<h5 id="6323">6.3.2.3 总结</h5>
+<ol>
+<li>对A作上Hessenberg分解，<span class="arithmatex">\(Q_0^T A Q_0 = H\)</span>；</li>
+<li>令<span class="arithmatex">\(H_0 = H\)</span>，对<span class="arithmatex">\(H_0\)</span>进行QR迭代——利用Givens变换。</li>
+</ol>
+<h3 id="64-qr">6.4 实用的QR方法</h3>
+<h4 id="641">6.4.1 带原点位移方法</h4>
+<h4 id="642-qr">6.4.2 双重步位移QR方法</h4>
 <h2 id="ch7">Ch7 对称特征值问题的计算方法</h2>
+<h3 id="71-qr">7.1 对称QR方法</h3>
+<h3 id="72">7.2 奇异值分解定理</h3>
               
             </div>
           </div><footer>
