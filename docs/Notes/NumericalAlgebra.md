@@ -343,7 +343,7 @@ $$
 $$
 \left\{
 \begin{aligned}
-\alpha_k =& \frac{(r^{(k)}, r^{(k)})}{(r^{(k)}, Ar^{(k)})}\\
+\alpha_k =& \frac{\langle r^{(k)}, r^{(k)}\rangle}{\langle r^{(k)}, Ar^{(k)}\rangle}\\
 x^{(k+1)} =& x^{(k)} + \alpha_k r^{(k)}\\
 r^{(k+1)} =& b - Ax^{(k+1)}
 \end{aligned}
@@ -366,15 +366,21 @@ $$
 
 #### 5.2.2 算法
 
-1. $\alpha_k = \frac{(r^{(k)}, p^{(k)})}{(p^{(k)}, Ap^{(k)})}$
+1. $\alpha_k = \frac{\langle r^{(k)}, p^{(k)}\rangle}{\langle p^{(k)}, Ap^{(k)}\rangle}$
 2. $x^{(k+1)} = x^{(k)} + \alpha p^{(k)}$
 3. $r^{(k+1)} = b - Ax^{k+1}$
-4. $\beta_k = -\frac{(r^{(k+1)}, Ap^{(k)})}{(p^{(k)}, Ap^{(k)})}$
+4. $\beta_k = -\frac{\langle r^{(k+1)}, Ap^{(k)}\rangle}{\langle p^{(k)}, Ap^{(k)}\rangle}$
 5. $p^{(k+1)} = r^{(k+1)} + \beta_k p^{(k)}$
 
-初始值：$\forall x^{(0)}, p^{(0)} = r^{(0)} = b - Ax^{(0)}, \alpha_0 = \frac{(r^{(0)}, r^{(0)})}{(p^{(0)}, Ap^{(0)})}, x^{(1)} = x^{(0)} + \alpha_0 p^{(0)}, r^{(1)} = b - Ax^{(1)}$。
+初始值：$\forall x^{(0)}, p^{(0)} = r^{(0)} = b - Ax^{(0)}, \alpha_0 = \frac{\langle r^{(0)}, r^{(0)}\rangle}{\langle p^{(0)}, Ap^{(0)}\rangle}, x^{(1)} = x^{(0)} + \alpha_0 p^{(0)}, r^{(1)} = b - Ax^{(1)}$。
 
 #### 5.2.3 “共轭”的体现
+
+1. 由C-G法得到的向量组$\{r^{(i)}\}$与$\{p^{(i)} \}$有以下性质：
+   1. $\langle p^{(i)}, r^{(j)}\rangle = 0, 0 \leq i < j \leq k$；
+   2. $\langle r^{(i)}, r^{(j)} \rangle = 0, 0 \leq i,j \leq k, i\neq j$；
+   3. $\langle p^{(i)}, Ap^{(j)} \rangle = 0, 0 \leq i,j \leq k, i\neq j$；
+   4. $span\{r^{(0)}, \cdots, r^{(k)} \} = span\{p^{(0)}, \cdots, p^{(k)} \} = \mathcal{K}(A, r^{(0)}, k+1)$，其中$\mathcal{K}(A, r^{(0)}, k+1) = span\{r^{(0)}, Ar^{(0)}, \cdots, A^k r^{(0)} \}$，通常称之为$Krylov$子空间。
 
 ## Ch6 非对称特征值问题的计算方法
 
@@ -382,17 +388,135 @@ $$
 
 #### 6.1.1 矩阵概念与性质
 
-1. 特征多项式，谱集
-2. 代数重数，几何重数
-3. 相似（变换）
+1. 特征值、特征多项式，谱集
+
+   1. 特征值：$A \in \mathbb{C}^{n\times n},$ 存在$\lambda \in \mathbb{C}, s.t. Ax = \lambda x(x \neq 0)$；
+
+   2. 特征多项式：$P_{A}(\lambda) = det(\lambda I - A) = (\lambda - \lambda_1)^{n_1} \cdots(\lambda - \lambda_r)^{n_r}$，其中$n_1 + \cdots + n_r = n$，$\lambda_1, \cdots , \lambda_r$互异，且称$\lambda_A = \{\lambda_1, \cdots, \lambda_r \}$为A的谱集。
+
+      $n_i$称为$\lambda_i$的代数重数（简称重数），而$m_i = n - rank(\lambda_i I - A)$称为$\lambda_i$的几何重数（有$m_i \leq n_i$）。
+
+   3. $n_i = 1$的$\lambda_i$称为单特征值，否则称为重特征值。如果$n_i = m_i$，则称$\lambda_i$为A的一个半单特征值。
+
+      显然，单特征值必是半单特征值。
+
+   4. 如果A所有特征值半单，则称A是非亏损的。
+
+      A非亏损$\Longleftrightarrow$$A$有n个线性无关的特征向量（即A可对角化）。
+
+2. 相似（变换）
+
+   1. 相似的矩阵具有相同的特征值；
+   2. A与B相似：$B = P^{-1}AP$。且若$x$为$A$的特征向量，则$Px$是$B$的特征向量
+
 
 #### 6.1.2 相关定理
 
 1. **Jordan分解定理**
+
+   设$A \in \mathbb{C}^{n\times n}$，有$r$个互不相同的特征值$\{\lambda_1, \cdots,\lambda_r \}$，其重数分别为$n(\lambda_1), \cdots, n(\lambda_r)$，则必存在一个非奇异矩阵$P\in \mathbb{C}^{n\times n}$，使得
+   
+$$
+P^{-1}AP = \begin{bmatrix}J(\lambda_1)& & & &\\
+& J(\lambda_2) & & \\
+& & \ddots &\\
+& & & J(\lambda_r)
+\end{bmatrix}
+$$
+
+其中$J(\lambda_i) = diag(J_1(\lambda_i), \cdots, J_{k_i}(\lambda_i)) \in \mathbb{C}^{n(\lambda_i) \times n(\lambda_i)}, i = 1, \cdots, r$，其中
+
+$$
+J_j(\lambda_i) = \begin{bmatrix}\lambda_i \quad1 & &\\
+& \lambda_i \quad\ddots &\\
+& & \ddots 1\\
+& & & \lambda_i
+\end{bmatrix} \in\mathbb{C}^{n_j(\lambda_i) \times n_j(\lambda_i)}, j = 1, \cdots, k_i
+$$
+
+$$
+n_1(\lambda_i) + \cdots + n_{k_i}(\lambda_i) = n(\lambda_i), i = 1, \cdots, r;
+$$
+
+上述定理中的矩阵J称为A的Jordan标准形，其中每个子矩阵$J_i(\lambda_i)$称为Jordan块。
+
 2. **Schur分解定理**
+
+   设$A \in \mathbb{C}^{n \times n}$，则存在酉矩阵$U \in \mathbb{C}^{n\times n}$，使得$U^* AU = T$，其中$T$是上三角阵。
+
+   且适当选取U，可以T的对角元按任意指定序列排序。
+
+3. 实数域上的**Schur分解定理**
+
+   设$A \in \mathbb{R}^{n \times n}$，则存在正交阵$Q \in \mathbb{R}^{n\times n}$，使得$Q^* AQ = \begin{bmatrix}R_{11}& R_{12}& \cdots& R_{1m}&\\ & \ddots & & \vdots \\ & & & R_{mm} \end{bmatrix}$，其中$R_{ii}$或是一个实数，或是一个具有一对共轭复数特征值的二阶方阵。
 
 ### 6.2 幂法
 
-### 6.3 QR方法
+### 6.3 计算矩阵特征值的QR方法
+
+#### 6.3.1 QR迭代：QR分解+反分解
+
+1. 回顾QR分解：见**3.4.1**
+
+2. 基本迭代与收敛性
+
+   1. 令$A_0 =A$，作分解$A_0 = Q_1R_1$，令$A_1 = R_1Q_1$，则$A_0$与$A_1$正交相似（$A_1 = Q_1^T Q_1 R_1Q_1 = Q_1^TA_0Q_1$）；
+   2. 作分解$A_1 = Q_2R_2$，令$A_2 = R_2 Q_2$；
+   3. $\cdots$
+   4. 作分解$A_m = Q_{m+1}R_{m+1}$，令$A_{m+1} = R_{m+1} Q_{m+1}$；
+
+   得到矩阵序列$\{A_m\}：两两正交相似。
+
+   令$\hat{Q}_m = Q_1 \cdots Q_m, \hat{R}_m = R_m \cdots R_1$，则有$\hat{Q}_m \hat{R}_m = A_m$。
+
+3. 上述的$A_m = [\alpha_{ij}^{(m)}]$的对角线以下的元素趋于0，而对角元趋于A的各个特征值（特征值由大到小从左上方开始排列）。
+
+#### 6.3.2 计算A的特征值的实现
+
+##### 6.3.2.1 将A先转化为上Hessenberg矩阵
+
+实际计算时，为了减少每次迭代所需的运算量，总是将原矩阵A经相似变换约化为一个**准上三角阵**，再对约化后的矩阵进行QR迭代。
+
+1. 上Hessenberg矩阵：
+
+$$
+H = \begin{bmatrix}h_{11}& h_{12}& h_{13}& \cdots& h_{1,n-1}& h_{1n}&\\
+h_{21}& h_{22}& h_{23}& \cdots& h_{2,n-1}& h_{2n}&\\
+& h_{32}& h_{33}& \cdots& h_{3,n-1}& h_{3n}&\\
+& & \ddots& \ddots& \vdots& \vdots&\\
+& & & \ddots& \ddots& \vdots&\\
+& & & & h_{n,n-1}& h_{nn}
+\end{bmatrix}
+$$
+
+2. 上Hessenberg分解：
+
+   现令$Q_0 = H_1H_2 \cdots H_{n-2}$，则有$Q_0^TAQ_0 = H$，称这个式子为A的上Hessenberg分解。
+
+   其中$Q_0$是多个Householder变换的乘积，故$Q_0$是正交阵。
+
+3. $Q_0$的具体计算：
+   1. 首先$H_1A$会使得A的第一列只剩$a_{11} \neq 0$，但需要注意的是，我们需要进行右乘，即$H_1AH_1$，这一步操作会使A的第一列0元素变为非零元素——这不是我们想要的。
+   2. 所以我们取$H_1 = \begin{bmatrix}1& 0\\ 0& \hat{H_1} \end{bmatrix}$ ，则$H_1AH_1 = \begin{bmatrix}a_{11}& a_2^T\hat{H_1}\\ \hat{H_1}a_1& \hat{H_1}A_{22}\hat{H_1} \end{bmatrix}$，其中$a_1^T = [a_{21}, a_{31}, \cdots, a_{n1}], a_2^T = [a_{12}, a_{13}, \cdots , a_{1n}]$。
+   3. 最佳方案是取$\hat{H_1}, s.t. \hat{H_1}a_1 = pe_1, p\in \mathbb{R}$。（其实就是使$H_1AH_1$的第一列只有前两个非零元素）。
+   4. 对$A_{22}$做类似的操作。
+
+##### 6.3.2.2 上Hessenberg的QR迭代
+
+因为H是一个准上三角阵（零元比较多），所以它的QR分解主要依靠Givens变换——也就是说，它的QR分解中的Q特指Givens变换。别忘了反分解（i.e.，要乘回去）。
+##### 6.3.2.3 总结
+
+1. 对A作上Hessenberg分解，$Q_0^T A Q_0 = H$；
+2. 令$H_0 = H$，对$H_0$进行QR迭代——利用Givens变换。
+
+### 6.4 实用的QR方法
+
+#### 6.4.1 带原点位移方法
+
+#### 6.4.2 双重步位移QR方法
 
 ## Ch7 对称特征值问题的计算方法
+
+### 7.1 对称QR方法
+
+### 7.2 奇异值分解定理
