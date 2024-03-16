@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Ch5 共轭梯度法 - Fontsize's Page</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Ch5 \u5171\u8f6d\u68af\u5ea6\u6cd5";
+        var mkdocs_page_input_path = "Notes\\NumericalAlgebra\\ch5.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Fontsize's Page
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Index</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../about/">About</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Algebra/">Algebra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Analysis/">Analysis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../">Numerical Algebra</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Fontsize's Page</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Ch5 共轭梯度法</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ch5">Ch5 共轭梯度法</h1>
+<h2 id="51">5.1 最速下降法</h2>
+<p>亦称梯度下降法</p>
+<ul>
+<li>定义二次泛函<span class="arithmatex">\(\psi(x) = x^TAx - 2b^Tx\)</span>，若A对称正定，则求解<span class="arithmatex">\(Ax = b\)</span>的解等价于求解二次泛函<span class="arithmatex">\(\psi(x)\)</span>的极小值点。</li>
+</ul>
+<ul>
+<li>
+<p>求解思路：给定<span class="arithmatex">\(x^{(0)}\)</span>，依次求<span class="arithmatex">\(x^{(1)}, x^{(2)}, \cdots\)</span>，s.t. <span class="arithmatex">\(\psi(x^{(k+1)} &lt; \psi(x^{(k)})\)</span></p>
+<p><span class="arithmatex">\(\rightarrow\)</span>给定<span class="arithmatex">\(x^{(0)}\)</span>，在方向<span class="arithmatex">\(x^{(0)} + \alpha p^{(0)}\)</span>上求<span class="arithmatex">\(\psi(x)\)</span>的极小值点<span class="arithmatex">\(x^{(1)}\)</span>；</p>
+<p><span class="arithmatex">\(\rightarrow \cdots\)</span></p>
+<ul>
+<li>问题转化为两要点：<ul>
+<li>如何确定方向序列<span class="arithmatex">\(\{ p^{(k)}\}\)</span>；</li>
+<li>如何求得步长<span class="arithmatex">\(\alpha\)</span>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>算法：</p>
+<p>先要取<span class="arithmatex">\(x^{(0)} \in \mathbb{R}^n, r^{(0)} = b - Ax^{(0)}\)</span>，之后按如下方式做迭代：</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+\alpha_k =&amp; \frac{\langle r^{(k)}, r^{(k)}\rangle}{\langle r^{(k)}, Ar^{(k)}\rangle}\\
+x^{(k+1)} =&amp; x^{(k)} + \alpha_k r^{(k)}\\
+r^{(k+1)} =&amp; b - Ax^{(k+1)}
+\end{aligned}
+\right.
+\]</div>
+<h2 id="52-c-g">5.2 共轭梯度法(C-G)</h2>
+<h3 id="521">5.2.1 与最速下降法作比较</h3>
+<ol>
+<li>
+<p>相同点：第一步仍然要取<span class="arithmatex">\(x^{(0)} \in \mathbb{R}^n, r^{(0)} = b - Ax^{(0)}\)</span>；</p>
+</li>
+<li>
+<p>不同点：在第<span class="arithmatex">\(k+1(k \geq 1)\)</span>步中，”下山“方向不再取负梯度方向。</p>
+<ol>
+<li>而是在过点<span class="arithmatex">\(x^{(k)}\)</span>由向量<span class="arithmatex">\(r^{(k)}\)</span>和<span class="arithmatex">\(p^{(k-1)}\)</span>所张成的平面内选取<span class="arithmatex">\(\psi(x)\)</span>下降最快的方向：</li>
+</ol>
+</li>
+</ol>
+<div class="arithmatex">\[
+\pi = \{x = x^{(k)} + \xi r^{(k)} + \eta p^{(k-1)}: \xi, \eta \in \mathbb{R} \}
+\]</div>
+<h3 id="522">5.2.2 算法</h3>
+<ol>
+<li><span class="arithmatex">\(\alpha_k = \frac{\langle r^{(k)}, p^{(k)}\rangle}{\langle p^{(k)}, Ap^{(k)}\rangle}\)</span></li>
+<li><span class="arithmatex">\(x^{(k+1)} = x^{(k)} + \alpha p^{(k)}\)</span></li>
+<li><span class="arithmatex">\(r^{(k+1)} = b - Ax^{k+1}\)</span></li>
+<li><span class="arithmatex">\(\beta_k = -\frac{\langle r^{(k+1)}, Ap^{(k)}\rangle}{\langle p^{(k)}, Ap^{(k)}\rangle}\)</span></li>
+<li><span class="arithmatex">\(p^{(k+1)} = r^{(k+1)} + \beta_k p^{(k)}\)</span></li>
+</ol>
+<p>初始值：<span class="arithmatex">\(\forall x^{(0)}, p^{(0)} = r^{(0)} = b - Ax^{(0)}, \alpha_0 = \frac{\langle r^{(0)}, r^{(0)}\rangle}{\langle p^{(0)}, Ap^{(0)}\rangle}, x^{(1)} = x^{(0)} + \alpha_0 p^{(0)}, r^{(1)} = b - Ax^{(1)}\)</span>。</p>
+<h3 id="523">5.2.3 “共轭”的体现</h3>
+<ol>
+<li>由C-G法得到的向量组<span class="arithmatex">\(\{r^{(i)}\}\)</span>与<span class="arithmatex">\(\{p^{(i)} \}\)</span>有以下性质：<ol>
+<li><span class="arithmatex">\(\langle p^{(i)}, r^{(j)}\rangle = 0, 0 \leq i &lt; j \leq k\)</span>；</li>
+<li><span class="arithmatex">\(\langle r^{(i)}, r^{(j)} \rangle = 0, 0 \leq i,j \leq k, i\neq j\)</span>；</li>
+<li><span class="arithmatex">\(\langle p^{(i)}, Ap^{(j)} \rangle = 0, 0 \leq i,j \leq k, i\neq j\)</span>；</li>
+<li><span class="arithmatex">\(span\{r^{(0)}, \cdots, r^{(k)} \} = span\{p^{(0)}, \cdots, p^{(k)} \} = \mathcal{K}(A, r^{(0)}, k+1)\)</span>，其中<span class="arithmatex">\(\mathcal{K}(A, r^{(0)}, k+1) = span\{r^{(0)}, Ar^{(0)}, \cdots, A^k r^{(0)} \}\)</span>，通常称之为<span class="arithmatex">\(Krylov\)</span>子空间。</li>
+</ol>
+</li>
+</ol>
+<p><a href="../ch6/">Next--&gt;Ch6</a></p>
+<p><a href="../">Numerical Algebra's homepage</a></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

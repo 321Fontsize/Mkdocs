@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Ch2 敏度分析与误差分析 - Fontsize's Page</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Ch2 \u654f\u5ea6\u5206\u6790\u4e0e\u8bef\u5dee\u5206\u6790";
+        var mkdocs_page_input_path = "Notes\\NumericalAlgebra\\ch2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Fontsize's Page
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Index</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../about/">About</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Algebra/">Algebra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Analysis/">Analysis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../">Numerical Algebra</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Fontsize's Page</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Ch2 敏度分析与误差分析</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ch2">Ch2 敏度分析与误差分析</h1>
+<h2 id="21">2.1 范数</h2>
+<h3 id="211">2.1.1 向量范数</h3>
+<ul>
+<li>性质：正定性、齐次性（数乘）与三角不等式；</li>
+<li>经常被使用的是p-范数——p-范数的等价性</li>
+</ul>
+<h3 id="212">2.1.2 矩阵范数</h3>
+<ul>
+<li>比向量范数多一个相容性；</li>
+</ul>
+<ul>
+<li>矩阵范数可以由向量范数诱导（大部分都是），但也有不是的（Frobenius范数（所有元素平方和开根））;<ul>
+<li><span class="arithmatex">\(||\cdot||_1\)</span>：列绝值和范数，<span class="arithmatex">\(||\cdot||_{\infty}\)</span>：行绝对值和范数</li>
+<li><span class="arithmatex">\(||\cdot||_2\)</span>：谱范数<span class="arithmatex">\(= \sqrt{\lambda_{\max}(A^TA)}\)</span></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>与矩阵条件数相关的性质与定理有很多，有意思的！</li>
+</ul>
+<h2 id="22">2.2 条件数</h2>
+<p>最常用的是矩阵条件数：<span class="arithmatex">\(cond_A = ||A||\cdot||A^{-1}||\)</span></p>
+<h2 id="23">2.3 敏度分析</h2>
+<p>敏度分析是说在求解<span class="arithmatex">\(Ax= b\)</span>时，对<span class="arithmatex">\(A\)</span>或<span class="arithmatex">\(b\)</span>有一定的扰动，<span class="arithmatex">\(x\)</span>的变换可以如何表示？或者<span class="arithmatex">\(x\)</span>的变换是可以被控制的吗？</p>
+<h2 id="24">2.4 精度估计</h2>
+<ul>
+<li>相对误差与绝对误差的分析</li>
+<li>舍入误差分析</li>
+</ul>
+<p><a href="../ch3/">Next--&gt;Ch3</a></p>
+<p><a href="../">Numerical Algebra's homepage</a></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

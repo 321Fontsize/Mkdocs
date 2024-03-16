@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Ch3 最小二乘问题(Least Square) - Fontsize's Page</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Ch3 \u6700\u5c0f\u4e8c\u4e58\u95ee\u9898(Least Square)";
+        var mkdocs_page_input_path = "Notes\\NumericalAlgebra\\ch3.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Fontsize's Page
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Index</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../about/">About</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Algebra/">Algebra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Analysis/">Analysis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../">Numerical Algebra</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Fontsize's Page</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Ch3 最小二乘问题(Least Square)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ch3-least-square">Ch3 最小二乘问题(Least Square)</h1>
+<h2 id="31">3.1 定义与解的性质</h2>
+<ul>
+<li>定义：</li>
+</ul>
+<div class="arithmatex">\[
+x^* = \mathop{\arg\min}_\limits{y\in \mathbb{R}^n} ||Ay - b||_2\\
+\Longrightarrow x^* \in \mathcal{X}_{LS}
+\]</div>
+<ul>
+<li>
+<p>解的存在唯一性（以下假设<span class="arithmatex">\(A \in \mathbb{R}^{m\times n}\)</span>）</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(A\)</span>的值域<span class="arithmatex">\(\mathcal{R}(A) = \{y\in \mathbb{R}^m: y=Ax, x\in\mathbb{R}^n \}\)</span>；</p>
+<blockquote>
+<p><span class="arithmatex">\(\mathcal{R}(A) = span(a_1, a_2, \cdots, a_n), a_i\)</span>为<span class="arithmatex">\(A\)</span>的列向量</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><span class="arithmatex">\(A\)</span>的零空间<span class="arithmatex">\(\mathcal{N}(A) = \{x\in \mathbb{R}^n: Ax=0\}\)</span>；</li>
+</ul>
+<ul>
+<li><span class="arithmatex">\(S \in \mathbb{R}^n\)</span>，其正交补<span class="arithmatex">\(S^{\perp} = \{y\in\mathbb{R}^n:y^Tx=0, \forall x \in S \}\)</span>。</li>
+</ul>
+<ul>
+<li>LS问题的解总是存在的。解唯一 <span class="arithmatex">\(\Longleftrightarrow\)</span> <span class="arithmatex">\(\mathcal{N}(A) = \{0\}\)</span>。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>求解by正则化方程组/法方程组：将求解<span class="arithmatex">\(x^*\)</span>转化为求解<span class="arithmatex">\(A^TAx = A^Tb\)</span>.</li>
+</ul>
+<h2 id="32-householder">3.2 Householder变换</h2>
+<ol>
+<li>定义<span class="arithmatex">\(H = I- 2ww^T\)</span>，其中<span class="arithmatex">\(w \in \mathbb{R}^{n\times 1}, ||w||_2=1\)</span></li>
+<li><span class="arithmatex">\(H\)</span>的性质：<ol>
+<li>对称性：<span class="arithmatex">\(H^T = H\)</span>;</li>
+<li>正交性：<span class="arithmatex">\(H^TH=I\)</span>;</li>
+<li>反射性：<span class="arithmatex">\(Hx\)</span>是<span class="arithmatex">\(x\)</span>关于<span class="arithmatex">\(w\)</span>的垂直超平面（<span class="arithmatex">\(span\{w\}^{\perp}\)</span>）的镜像反射</li>
+</ol>
+</li>
+<li><span class="arithmatex">\(H\)</span>具体形式的求解：<ol>
+<li><span class="arithmatex">\(v = x \pm ||x||_2e_1\)</span>;</li>
+<li><span class="arithmatex">\(w = \frac{v}{||v||_2}\)</span>;</li>
+<li><span class="arithmatex">\(H = I - 2ww^T = I - \frac{2vv^T}{v^Tv} = I - \beta vv^T, \beta=\frac{2}{v^Tv}\)</span></li>
+</ol>
+</li>
+</ol>
+<h2 id="33-givens">3.3 Givens变换</h2>
+<blockquote>
+<p>亦称为平面旋转变换，可以选择性地将一些元素化为0.</p>
+</blockquote>
+<ol>
+<li>
+<p>G原来是一个单位阵，但第i行第i列与第k列第k行进行了一些操作。<span class="arithmatex">\(Gy\)</span>可以使<span class="arithmatex">\(y\)</span>的某一个分量变为0——利用三角函数性质</p>
+</li>
+<li>
+<p><span class="arithmatex">\(G\)</span>具体形式的求解关键在于理解</p>
+</li>
+</ol>
+<div class="arithmatex">\[
+\begin{bmatrix}
+cos \;\; sin\\
+-sin \;\; cos
+\end{bmatrix}
+\begin{bmatrix}
+a\\
+b
+\end{bmatrix}=
+\begin{bmatrix}
+r\\
+0
+\end{bmatrix}
+\]</div>
+<h2 id="34-ls">3.4 正交变换法求解LS问题</h2>
+<h3 id="341-qr">3.4.1 QR分解定理</h3>
+<ul>
+<li>
+<p>定理叙述：</p>
+<p>设<span class="arithmatex">\(A \in \mathbb{R}^{m\times n}(m \geq n)\)</span>，则<span class="arithmatex">\(A\)</span>有QR分解：</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+A = Q\begin{bmatrix}R \\ 0\end{bmatrix},
+\]</div>
+<p>其中<span class="arithmatex">\(Q \in \mathbb{R}^{m\times m}\)</span>为正交阵，<span class="arithmatex">\(R\in \mathbb{R}^{n\times n}\)</span>是具有非负对角元的上三角矩阵。且当<span class="arithmatex">\(m = n\)</span>与<span class="arithmatex">\(A\)</span>可逆时，上述分解唯一。</p>
+<ul>
+<li>求解LS问题：</li>
+</ul>
+<div class="arithmatex">\[
+\begin{aligned}
+||Ax-b||_2^2 =&amp; ||Q^TAx - Q^Tb||_2^2\\
+=&amp; ||\begin{bmatrix}R \\ 0\end{bmatrix}x - Q^Tb||_2^2\\
+=&amp; ||\begin{bmatrix}Rx \\ 0\end{bmatrix} - \begin{bmatrix}c_1 \\ c_2\end{bmatrix}||_2^2\\
+&amp;= ||Rx - c_1||_2^2 + ||c_2||_2^2
+\end{aligned}
+\]</div>
+<p>则<span class="arithmatex">\(x\in \mathcal{X}_{LS} \Longleftrightarrow Rx=c_1\)</span>。</p>
+<h3 id="342-householderqr">3.4.2 利用Householder变换实现QR分解</h3>
+<ul>
+<li>Householder变换可以将一个列向量（无论几维）变换为第一个元素非零而其他元素均为0的列向量。</li>
+</ul>
+<ul>
+<li>有<span class="arithmatex">\(H_r H_{r-1}\cdots H_2 H_1 A = \begin{bmatrix}R \\ 0\end{bmatrix}\)</span>，则<span class="arithmatex">\(Q = H_1 H_2 \cdots H_{r-1}H_r\)</span>.</li>
+</ul>
+<p><a href="../ch4/">Next--&gt;Ch4</a></p>
+<p><a href="../">Numerical Algebra's homepage</a></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
