@@ -9,7 +9,8 @@ nav:
   - Notes:
     - Algebra: Notes/Algebra.md
     - Analysis: Notes/Analysis.md
-    - Numerical Methods: Notes/NumericalAlgebra.md
+    - Numerical Algebra: Notes/NumericalAlgebra.md
+
 
 markdown_extensions:
   - pymdownx.arithmatex: # 数学公式内嵌mathjax

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Ch1 线性方程组的直接解法(Ax=b) - Fontsize's Page</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Ch1 \u7ebf\u6027\u65b9\u7a0b\u7ec4\u7684\u76f4\u63a5\u89e3\u6cd5(Ax=b)";
+        var mkdocs_page_input_path = "Notes\\NumericalAlgebra\\ch1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Fontsize's Page
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Index</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../about/">About</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Notes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Algebra/">Algebra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Analysis/">Analysis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../">Numerical Algebra</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Fontsize's Page</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Ch1 线性方程组的直接解法(Ax=b)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ch1-axb">Ch1 线性方程组的直接解法(Ax=b)</h1>
+<h2 id="11">1.1 三角形方程的解法</h2>
+<ul>
+<li>
+<p>下三角形——前代法</p>
+<ul>
+<li>因为第一行只有<span class="arithmatex">\(a_{11} \neq 0\)</span>，所以先解出<span class="arithmatex">\(x_1\)</span>；</li>
+<li>再将<span class="arithmatex">\(x_1\)</span>代入第二行，解出<span class="arithmatex">\(x_2\)</span>。重复以上步骤直至解出<span class="arithmatex">\(x\)</span>。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>上三角形——回代法<ul>
+<li>因为最后一行只有<span class="arithmatex">\(a_{nn} \neq 0\)</span>，所以先解出<span class="arithmatex">\(x_n\)</span>；</li>
+<li>再将<span class="arithmatex">\(x_n\)</span>代入倒数第二行，解出<span class="arithmatex">\(x_{n-1}\)</span>。重复以上步骤直至解出<span class="arithmatex">\(x\)</span>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="12-gaussgauss">1.2 <strong>Gauss</strong>变换与<strong>Gauss</strong>消元法</h2>
+<ul>
+<li><strong>Gauss变换</strong>的形式</li>
+</ul>
+<div class="arithmatex">\[
+L_k = \begin{bmatrix}
+1 &amp; &amp; &amp;\\
+&amp; \ddots &amp; &amp;\\
+&amp; &amp; 1 &amp;\\
+&amp; &amp; -l_{k+1, k}\;\;\;\; 1\\
+&amp; &amp; \vdots &amp; \ddots \\
+&amp; &amp; -l_{n,k}&amp; &amp; 1
+\end{bmatrix}
+\]</div>
+<blockquote>
+<p>其实Gauss变换可以看作一个算子，一个特殊的对应的Gauss变换作用于矩阵A，可以将A的第k列转化为<span class="arithmatex">\([x_1, x_2, \cdots, x_k, 0, \cdots, 0]^T\)</span>.</p>
+</blockquote>
+<ul>
+<li>
+<p>矩阵<span class="arithmatex">\(A\)</span>的三角分解：</p>
+<ul>
+<li>令<span class="arithmatex">\(L = (L_{n-1}L_{n-2}\cdots L_1)^{-1}, U = A^{(n-1)}\)</span>，则<span class="arithmatex">\(A = LU\)</span>；</li>
+<li>其中<span class="arithmatex">\(L\)</span>是下三角矩阵，<span class="arithmatex">\(U\)</span>是上三角矩阵</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>三角分解之后，<span class="arithmatex">\(Ax= b \rightarrow LUx=b \rightarrow Ly=b,Ux=y\)</span></li>
+</ul>
+<h2 id="13">1.3 选主元三角分解</h2>
+<ul>
+<li>全主元消元法<ul>
+<li><span class="arithmatex">\(U = L_{n-1}P_{n-1}L_{n-2}P_{n-2} \cdots L_1P_1AQ_1 \cdots Q_{n-1}\)</span>，其中<span class="arithmatex">\(P_i, Q_i\)</span>均为置换矩阵，<span class="arithmatex">\(L_i\)</span>为Gauss变换。</li>
+<li>也就是说，从正式开始消元之前，就已经选过一轮全主元了。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>列主元消元法<ul>
+<li>只在当前主元这一列的下方选，如现在主元是<span class="arithmatex">\(a_{kk}\)</span>，那么就是从<span class="arithmatex">\(\{a_{ik}: k\leq i \leq n\}\)</span>中选出绝对值最大的一个，然后进行行交换——也就是说，没有全主元方法中的右端的<span class="arithmatex">\(Q_i\)</span>了。</li>
+<li>也是从第一步消元前就先选了一轮了。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>选主元消去是完全建立在Gauss消元法的基础上的，它只不过是在每一次消去之后，通过对比主元与其他元间的大小进而交换对应的行与列，来确保A的所有顺序主子式均非零。</p>
+</blockquote>
+<h2 id="14-cholesky">1.4 平方根法(Cholesky分解)</h2>
+<ul>
+<li><span class="arithmatex">\(Ax=b \rightarrow A=LL^T \rightarrow LL^Tx=b \rightarrow Ly=b,L^Tx=y\)</span></li>
+</ul>
+<ul>
+<li>改进的平方根法：<span class="arithmatex">\(A = LDL^T\)</span>，不需要开方运算。</li>
+</ul>
+<h2 id="15">1.5 拓展</h2>
+<ul>
+<li>三对角矩阵<span class="arithmatex">\(\rightarrow\)</span>带状矩阵<ul>
+<li>追赶法求解三对角矩阵</li>
+</ul>
+</li>
+<li>Doolittle分解，Courant分解</li>
+<li>求逆的方法：Gauss-Jordan消元，构建增广矩阵（将两个矩阵拼起来）。</li>
+</ul>
+<p><a href="../ch2/">Next--&gt;Ch2</a></p>
+<p><a href="../">Numerical Algebra's homepage</a></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
