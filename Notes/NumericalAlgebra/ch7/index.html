@@ -81,7 +81,58 @@
               
                 <h1 id="ch7">Ch7 对称特征值问题的计算方法</h1>
 <h2 id="71-qr">7.1 对称QR方法</h2>
+<p>对称QR方法就是求解对称特征值问题的QR方法，是将QR方法应用于对称矩阵，并且充分利用其对称性得到的。</p>
+<h3 id="711">7.1.1 三对角化</h3>
+<p>若<span class="arithmatex">\(A\)</span>是实对称阵，并假定<span class="arithmatex">\(A\)</span>的上Hessenberg分解为<span class="arithmatex">\(Q^TAQ = T\)</span>，则容易验证<span class="arithmatex">\(T\)</span>必定是对称三对角阵。</p>
+<p>具体实现：</p>
+<ol>
+<li>
+<p>上Hessenberg分解与<a href="../ch6/">Ch6-6.3.2</a>中的计算方法别无二样：</p>
+<ul>
+<li>定义<span class="arithmatex">\(T = \begin{bmatrix}\alpha_1 &amp;\beta_1 &amp; &amp; \\ \beta_1&amp; \alpha_2 &amp;\ddots &amp; \\&amp; \ddots &amp;\ddots&amp; \beta_{n-1} \\ &amp; &amp; \beta_{n-1}&amp; \alpha_{n} \end{bmatrix}\)</span>，</li>
+</ul>
+<ul>
+<li>令<span class="arithmatex">\(Q = H_1 H_2 \cdots H_{n-2}, \quad H_k =diag(I_k, \hat{H}_k)\)</span>，则<span class="arithmatex">\(Q^T A Q = T\)</span>。</li>
+</ul>
+</li>
+<li>
+<p>在第k步约化时，主要工作量是计算<span class="arithmatex">\(\hat{H}_{k}A_{k-1}\hat{H}_k\)</span>：</p>
+<ul>
+<li>设<span class="arithmatex">\(\hat{H_k} = I -\beta v v^T, \quad v \in \mathbb{R}^{n-k}\)</span>，利用<span class="arithmatex">\(A_{k-1}\)</span>的对称性，有<span class="arithmatex">\(\hat{H}_{k}A_{k-1}\hat{H}_k = A_{k-1} - vw^T - wv^T\)</span>，其中<span class="arithmatex">\(w = u - \frac{1}{2}\beta(v^Tu)v, \quad u = \beta A_{k-1}v\)</span>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="712-tqrqr">7.1.2 对T作QR迭代——隐式对称QR迭代</h3>
+<p>由于此时A的特征值均为实数，故没有必要使用双重步位移迭代，直接使用带原点位移迭代。</p>
+<p>我们当然可以像<a href="../ch6/">Ch6-6.4</a>中那样选取位移为<span class="arithmatex">\(\mu = T^{(k)}(n, n)\)</span>，但是由于A的对称性，我们有更好的选择方法：</p>
+<ul>
+<li><span class="arithmatex">\(Wilkinson\)</span>位移：<ul>
+<li><span class="arithmatex">\(\mu\)</span>选取为矩阵<span class="arithmatex">\(T^{(k)}(n-1:n, n-1:n) = \begin{bmatrix}\alpha_{n-1}&amp; \beta_{n-1}\\ \beta_{n-1}&amp; \alpha_n \end{bmatrix}\)</span>的两个特征值中靠近<span class="arithmatex">\(\alpha_n\)</span>的那一个；</li>
+<li>即<span class="arithmatex">\(\mu = \alpha_n + \delta - sgn(\delta)\sqrt{\delta^2 + \beta_{n-1}^2},\quad \delta = \frac{\alpha_{n-1}-\alpha_n}{2}\)</span>.</li>
+<li>上述两种位移取法均是三次收敛速度，但后者比前者好。</li>
+</ul>
+</li>
+<li>选好了位移，我们再来考虑如何进行一次漂亮的QR迭代：<span class="arithmatex">\(T_k - \mu I =Q_kR_k, \quad \hat{T}_k = R_kQ_K + \mu I\)</span>：<ul>
+<li>利用Givens变换实现<span class="arithmatex">\(T_k - \mu I\)</span>的QR分解。</li>
+</ul>
+</li>
+<li>带<span class="arithmatex">\(Wilkinson\)</span>位移的隐式对称QR迭代：</li>
+</ul>
+<h3 id="713-qr">7.1.3 隐式对称QR算法</h3>
 <h2 id="72">7.2 奇异值分解定理</h2>
+<blockquote>
+<p>SVD分解定理</p>
+</blockquote>
+<p>设<span class="arithmatex">\(A \in \mathbb{R}^{m\times n}\)</span>，则存在正交矩阵<span class="arithmatex">\(U \in \mathbb{R}^{m\times m}\)</span>和<span class="arithmatex">\(Q \in \mathbb{R}^{n\times n}\)</span>，使得
+$$
+U^TAV = \begin{bmatrix}\Sigma_r&amp; 0\ 0&amp;0\end{bmatrix}
+$$
+其中<span class="arithmatex">\(\Sigma_r = diag(\sigma_1, \cdots, \sigma_r), \quad \sigma_1 \geq \cdots \geq \sigma_r &gt; 0\)</span>.</p>
+<p>设<span class="arithmatex">\(A\)</span>具有如上的奇异值分解，那么我们称数</p>
+<div class="arithmatex">\[
+\sigma_1 \geq \cdots \geq \sigma_r &gt; \sigma_{r+1} = \cdots = \sigma_n= 0
+\]</div>
+<p>为A的奇异值，V的列向量称为A的右奇异向量，U的列向量称为A的左奇异向量。</p>
 <p><a href="../ch1/">Next--&gt;Ch1</a></p>
 <p><a href="../">Numerical Algebra's homepage</a></p>
               
