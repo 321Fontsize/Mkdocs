@@ -146,7 +146,7 @@ n_1(\lambda_i) + \cdots + n_{k_i}(\lambda_i) = n(\lambda_i), i = 1, \cdots, r;
 </ul>
 <ul>
 <li>
-<p>实数域上的<strong>Schur分解定理</strong></p>
+<p><a name='Schur'>实数域上的<strong>Schur分解定理</strong></a></p>
 <p>设<span class="arithmatex">\(A \in \mathbb{R}^{n \times n}\)</span>，则存在正交阵<span class="arithmatex">\(Q \in \mathbb{R}^{n\times n}\)</span>，使得<span class="arithmatex">\(Q^* AQ = \begin{bmatrix}R_{11}&amp; R_{12}&amp; \cdots&amp; R_{1m}&amp;\\ &amp; \ddots &amp; &amp; \vdots \\ &amp; &amp; &amp; R_{mm} \end{bmatrix}\)</span>，其中<span class="arithmatex">\(R_{ii}\)</span>或是一个实数，或是一个具有一对共轭复数特征值的二阶方阵。称上述形式为A的实Schur标准形。</p>
 </li>
 </ul>
@@ -228,7 +228,7 @@ P^* A P =  \begin{bmatrix}\lambda_1&amp; *&amp;\\
 <h3 id="631-qrqr">6.3.1 QR迭代：QR分解+反分解</h3>
 <ol>
 <li>
-<p>回顾QR分解：见<strong>3.4.1</strong></p>
+<p>回顾QR分解：见<a href="../ch3/"><strong>3.4.1</strong></a></p>
 </li>
 <li>
 <p>基本迭代与收敛性</p>
@@ -238,13 +238,17 @@ P^* A P =  \begin{bmatrix}\lambda_1&amp; *&amp;\\
 <li><span class="arithmatex">\(\cdots\)</span></li>
 <li>作分解<span class="arithmatex">\(A_m = Q_{m+1}R_{m+1}\)</span>，令<span class="arithmatex">\(A_{m+1} = R_{m+1} Q_{m+1}\)</span>；</li>
 </ol>
-<p>得到矩阵序列<span class="arithmatex">\(\{A_m\}\)</span>：两两正交相似。</p>
+<p>得到矩阵序列<span class="arithmatex">\(\{A_m\}\)</span>：两两正交相似——<em>也就是说，我们实施QR迭代其实是在对A一步步做正交相似变换</em>。</p>
 <p>令<span class="arithmatex">\(\hat{Q}_m = Q_1 \cdots Q_m, \hat{R}_m = R_m \cdots R_1\)</span>，则有<span class="arithmatex">\(\hat{Q}_m \hat{R}_m = A_m\)</span>。</p>
 </li>
 <li>
 <p>上述的<span class="arithmatex">\(A_m = [\alpha_{ij}^{(m)}]\)</span>的对角线以下的元素趋于0，而对角元趋于A的各个特征值（特征值由大到小从左上方开始排列）。</p>
 </li>
+<li>
+<p>不难发现，上述的<span class="arithmatex">\(A_m\)</span>最终会逼近于<span class="arithmatex">\(A\)</span>的<a href="#Schur">实Schur标准形</a>。</p>
+</li>
 </ol>
+<p><strong>故我们的目的即是计算<span class="arithmatex">\(A\)</span>的实Schur标准形！！！</strong></p>
 <h3 id="632-a">6.3.2 计算A的特征值的实现</h3>
 <ul>
 <li><strong>将A先转化为上Hessenberg矩阵</strong></li>
@@ -372,6 +376,7 @@ H_1-\mu_2I = U_2R_2, &amp; \quad H_2 = R_2U_2 + \mu_2I.
 </ul>
 </li>
 </ul>
+<h2 id="66-qr">6.6 隐式QR算法</h2>
 <p><a href="../ch7/">Next--&gt;Ch7</a></p>
 <p><a href="../">Numerical Algebra's homepage</a></p>
               
