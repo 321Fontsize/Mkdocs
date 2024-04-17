@@ -102,7 +102,7 @@
 <ul>
 <li>
 <p>算法：</p>
-<p>先要取<span class="arithmatex">\(x^{(0)} \in \mathbb{R}^n, r^{(0)} = b - Ax^{(0)}\)</span>，之后按如下方式做迭代：</p>
+<p>先要取<span class="arithmatex">\(x^{(0)} \in \mathbb{R}^n, p^{(0)} = r^{(0)} = b - Ax^{(0)}\)</span>，之后按如下方式做迭代：</p>
 </li>
 </ul>
 <div class="arithmatex">\[
@@ -118,7 +118,7 @@ r^{(k+1)} =&amp; b - Ax^{(k+1)}
 <h3 id="521">5.2.1 与最速下降法作比较</h3>
 <ol>
 <li>
-<p>相同点：第一步仍然要取<span class="arithmatex">\(x^{(0)} \in \mathbb{R}^n, r^{(0)} = b - Ax^{(0)}\)</span>；</p>
+<p>相同点：第一步仍然要取<span class="arithmatex">\(x^{(0)} \in \mathbb{R}^n, r^{(0)} = Ax^{(0)} - b\)</span>；</p>
 </li>
 <li>
 <p>不同点：在第<span class="arithmatex">\(k+1(k \geq 1)\)</span>步中，”下山“方向不再取负梯度方向。</p>
@@ -131,14 +131,26 @@ r^{(k+1)} =&amp; b - Ax^{(k+1)}
 \pi = \{x = x^{(k)} + \xi r^{(k)} + \eta p^{(k-1)}: \xi, \eta \in \mathbb{R} \}
 \]</div>
 <h3 id="522">5.2.2 算法</h3>
+<p>我们的目标函数是<span class="arithmatex">\(f(x) = \frac{1}{2}x^T A x  - b^T x\)</span>，故梯度为<span class="arithmatex">\((Ax - b)\)</span>，则下降方向要取负梯度<span class="arithmatex">\(p = r = b - Ax\)</span>。</p>
+<p>初始值：<span class="arithmatex">\(\forall x^{(0)}, r^{(0)} = b - Ax^{(0)}, p^{(0)} = r^{(0)}, k =0\)</span>：</p>
 <ol>
 <li><span class="arithmatex">\(\alpha_k = \frac{\langle r^{(k)}, p^{(k)}\rangle}{\langle p^{(k)}, Ap^{(k)}\rangle}\)</span></li>
 <li><span class="arithmatex">\(x^{(k+1)} = x^{(k)} + \alpha p^{(k)}\)</span></li>
-<li><span class="arithmatex">\(r^{(k+1)} = b - Ax^{k+1}\)</span></li>
+<li><span class="arithmatex">\(r^{(k+1)} = b - Ax^{(k+1)}\)</span></li>
 <li><span class="arithmatex">\(\beta_k = -\frac{\langle r^{(k+1)}, Ap^{(k)}\rangle}{\langle p^{(k)}, Ap^{(k)}\rangle}\)</span></li>
 <li><span class="arithmatex">\(p^{(k+1)} = r^{(k+1)} + \beta_k p^{(k)}\)</span></li>
 </ol>
-<p>初始值：<span class="arithmatex">\(\forall x^{(0)}, p^{(0)} = r^{(0)} = b - Ax^{(0)}, \alpha_0 = \frac{\langle r^{(0)}, r^{(0)}\rangle}{\langle p^{(0)}, Ap^{(0)}\rangle}, x^{(1)} = x^{(0)} + \alpha_0 p^{(0)}, r^{(1)} = b - Ax^{(1)}\)</span>。</p>
+<p>第一步示例：
+$$
+\begin{aligned}
+\alpha_0 &amp;= \frac{\langle r^{(0)}, r^{(0)}\rangle}{\langle p^{(0)}, Ap^{(0)}\rangle}, \
+x^{(1)} &amp;= x^{(0)} + \alpha_0 p^{(0)}, \
+r^{(1)} &amp;= b - Ax^{(1)},\
+\beta_1 &amp;= -\frac{\langle r^{1}, Ap^{(0)} \rangle}{\langle p^{(0)}, Ap^{(0)}\rangle},\
+p^{(1)} &amp;= r^{(1)} + \beta_1 p^{(0)},\
+k &amp;= k + 1.
+\end{aligned}
+$$</p>
 <h3 id="523">5.2.3 “共轭”的体现</h3>
 <ol>
 <li>由C-G法得到的向量组<span class="arithmatex">\(\{r^{(i)}\}\)</span>与<span class="arithmatex">\(\{p^{(i)} \}\)</span>有以下性质：<ol>
