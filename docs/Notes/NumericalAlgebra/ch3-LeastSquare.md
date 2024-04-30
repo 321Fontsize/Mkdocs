@@ -91,6 +91,6 @@ $$
 
 - 有$H_r H_{r-1}\cdots H_2 H_1 A = \begin{bmatrix}R \\ 0\end{bmatrix}$，则$Q = H_1 H_2 \cdots H_{r-1}H_r$.
 
-[Next-->Ch4](./ch4.md)
+[Next-->Ch4](./ch4-古典迭代法.md)
 
 [Numerical Algebra's homepage](../NumericalAlgebra.md)

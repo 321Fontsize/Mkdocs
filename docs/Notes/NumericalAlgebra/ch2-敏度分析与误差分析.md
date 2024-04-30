@@ -30,6 +30,6 @@
 - 相对误差与绝对误差的分析
 - 舍入误差分析
 
-[Next-->Ch3](./ch3.md)
+[Next-->Ch3](./ch3-LeastSquare.md)
 
 [Numerical Algebra's homepage](../NumericalAlgebra.md)

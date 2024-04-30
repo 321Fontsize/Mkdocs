@@ -76,6 +76,6 @@ $$
    3. $\langle p^{(i)}, Ap^{(j)} \rangle = 0, 0 \leq i,j \leq k, i\neq j$；
    4. $span\{r^{(0)}, \cdots, r^{(k)} \} = span\{p^{(0)}, \cdots, p^{(k)} \} = \mathcal{K}(A, r^{(0)}, k+1)$，其中$\mathcal{K}(A, r^{(0)}, k+1) = span\{r^{(0)}, Ar^{(0)}, \cdots, A^k r^{(0)} \}$，通常称之为$Krylov$子空间。
 
-[Next-->Ch6](./ch6.md)
+[Next-->Ch6](./ch6-非对称特征值问题的计算方法.md)
 
 [Numerical Algebra's homepage](../NumericalAlgebra.md)

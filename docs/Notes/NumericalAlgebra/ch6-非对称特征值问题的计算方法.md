@@ -148,7 +148,7 @@ $$
 
 ### 6.3.1 QR迭代：QR分解+反分解
 
-1. 回顾QR分解：见[**3.4.1**](./ch3.md)
+1. 回顾QR分解：见[**3.4.1**](./ch3-LeastSquare.md)
 
 2. 基本迭代与收敛性
 
@@ -293,6 +293,6 @@ $$
 
 ## 6.6 隐式QR算法
 
-[Next-->Ch7](./ch7.md)
+[Next-->Ch7](./ch7-对称特征值问题的计算方法.md)
 
 [Numerical Algebra's homepage](../NumericalAlgebra.md)

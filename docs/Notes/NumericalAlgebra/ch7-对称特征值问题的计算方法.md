@@ -10,7 +10,7 @@
 
 具体实现：
 
-1. 上Hessenberg分解与[Ch6-6.3.2](./ch6.md)中的计算方法别无二样：
+1. 上Hessenberg分解与[Ch6-6.3.2](./ch6-非对称特征值问题的计算方法.md)中的计算方法别无二样：
 
    - 定义$T = \begin{bmatrix}\alpha_1 &\beta_1 & & \\ \beta_1& \alpha_2 &\ddots & \\& \ddots &\ddots& \beta_{n-1} \\ & & \beta_{n-1}& \alpha_{n} \end{bmatrix}$，
 
@@ -24,7 +24,7 @@
 
 由于此时A的特征值均为实数，故没有必要使用双重步位移迭代，直接使用带原点位移迭代。
 
-我们当然可以像[Ch6-6.4](./ch6.md)中那样选取位移为$\mu = T^{(k)}(n, n)$，但是由于A的对称性，我们有更好的选择方法：
+我们当然可以像[Ch6-6.4](./ch6-非对称特征值问题的计算方法.md)中那样选取位移为$\mu = T^{(k)}(n, n)$，但是由于A的对称性，我们有更好的选择方法：
 
 - $Wilkinson$位移：
   - $\mu$选取为矩阵$T^{(k)}(n-1:n, n-1:n) = \begin{bmatrix}\alpha_{n-1}& \beta_{n-1}\\ \beta_{n-1}& \alpha_n \end{bmatrix}$的两个特征值中靠近$\alpha_n$的那一个；
@@ -54,6 +54,6 @@ $$
 
 为A的奇异值，V的列向量称为A的右奇异向量，U的列向量称为A的左奇异向量。
 
-[Next-->Ch1](./ch1.md)
+[Next-->Ch1](./ch1-线性方程组的直接解法(Ax=b).md)
 
 [Numerical Algebra's homepage](../NumericalAlgebra.md)

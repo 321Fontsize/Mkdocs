@@ -60,6 +60,6 @@ $$
 - Doolittle分解，Courant分解
 - 求逆的方法：Gauss-Jordan消元，构建增广矩阵（将两个矩阵拼起来）。
 
-[Next-->Ch2](./ch2.md)
+[Next-->Ch2](./ch2-敏度分析与误差分析.md)
 
 [Numerical Algebra's homepage](../NumericalAlgebra.md)
