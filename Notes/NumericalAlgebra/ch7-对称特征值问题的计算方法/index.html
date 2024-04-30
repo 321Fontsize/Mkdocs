@@ -87,7 +87,7 @@
 <p>具体实现：</p>
 <ol>
 <li>
-<p>上Hessenberg分解与<a href="./ch6.md">Ch6-6.3.2</a>中的计算方法别无二样：</p>
+<p>上Hessenberg分解与<a href="../ch6-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E7%89%B9%E5%BE%81%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/">Ch6-6.3.2</a>中的计算方法别无二样：</p>
 <ul>
 <li>定义<span class="arithmatex">\(T = \begin{bmatrix}\alpha_1 &amp;\beta_1 &amp; &amp; \\ \beta_1&amp; \alpha_2 &amp;\ddots &amp; \\&amp; \ddots &amp;\ddots&amp; \beta_{n-1} \\ &amp; &amp; \beta_{n-1}&amp; \alpha_{n} \end{bmatrix}\)</span>，</li>
 </ul>
@@ -104,7 +104,7 @@
 </ol>
 <h3 id="712-tqrqr">7.1.2 对T作QR迭代——隐式对称QR迭代</h3>
 <p>由于此时A的特征值均为实数，故没有必要使用双重步位移迭代，直接使用带原点位移迭代。</p>
-<p>我们当然可以像<a href="./ch6.md">Ch6-6.4</a>中那样选取位移为<span class="arithmatex">\(\mu = T^{(k)}(n, n)\)</span>，但是由于A的对称性，我们有更好的选择方法：</p>
+<p>我们当然可以像<a href="../ch6-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E7%89%B9%E5%BE%81%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/">Ch6-6.4</a>中那样选取位移为<span class="arithmatex">\(\mu = T^{(k)}(n, n)\)</span>，但是由于A的对称性，我们有更好的选择方法：</p>
 <ul>
 <li><span class="arithmatex">\(Wilkinson\)</span>位移：<ul>
 <li><span class="arithmatex">\(\mu\)</span>选取为矩阵<span class="arithmatex">\(T^{(k)}(n-1:n, n-1:n) = \begin{bmatrix}\alpha_{n-1}&amp; \beta_{n-1}\\ \beta_{n-1}&amp; \alpha_n \end{bmatrix}\)</span>的两个特征值中靠近<span class="arithmatex">\(\alpha_n\)</span>的那一个；</li>
@@ -133,7 +133,7 @@ $$
 \sigma_1 \geq \cdots \geq \sigma_r &gt; \sigma_{r+1} = \cdots = \sigma_n= 0
 \]</div>
 <p>为A的奇异值，V的列向量称为A的右奇异向量，U的列向量称为A的左奇异向量。</p>
-<p><a href="./ch1.md">Next--&gt;Ch1</a></p>
+<p><a href="../ch1-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%9B%B4%E6%8E%A5%E8%A7%A3%E6%B3%95%28Ax%3Db%29/">Next--&gt;Ch1</a></p>
 <p><a href="../">Numerical Algebra's homepage</a></p>
               
             </div>
