@@ -8,7 +8,7 @@
 
 #### [Ch4 古典迭代法](./NumericalAlgebra/ch4-古典迭代法.md)
 
-#### [Ch5 共轭梯度法](./NumericalAlgebra/ch5-共轭梯度法.md)
+#### [Ch5 梯度法](./NumericalAlgebra/ch5-梯度法.md)
 
 #### [Ch6 非对称特征值问题的计算方法](./NumericalAlgebra/ch6-非对称特征值问题的计算方法.md)
 

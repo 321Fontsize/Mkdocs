@@ -62,4 +62,4 @@ $$
 
 [Next-->Ch2](./ch2-敏度分析与误差分析.md)
 
-[Numerical Algebra's homepage](../NumericalAlgebra.md)
+[Homepage of NLA](../NumericalAlgebra.md)

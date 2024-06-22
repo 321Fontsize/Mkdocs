@@ -1,7 +1,8 @@
 site_name: Fontsize's Page
 
 theme:
-  name: readthedocs
+  # name: readthedocs
+  name: material
 
 nav:
   - Index: index.md
@@ -9,16 +10,15 @@ nav:
   - Notes:
     - Algebra: Notes/Algebra.md
     - Analysis: Notes/Analysis.md
-    - Numerical Algebra: Notes/NumericalAlgebra.md
-  # - NumericalAlgebra:
-  #   - Homepage: Notes/NumericalAlgebra.md
-  #   - ch1: Notes/NumericalAlgebra/ch1.md
-  #   - ch2: Notes/NumericalAlgebra/ch2.md
-  #   - ch3: Notes/NumericalAlgebra/ch3.md
-  #   - ch4: Notes/NumericalAlgebra/ch4.md
-  #   - ch5: Notes/NumericalAlgebra/ch5.md
-  #   - ch6: Notes/NumericalAlgebra/ch6.md
-  #   - ch7: Notes/NumericalAlgebra/ch7.md
+    - NumericalAlgebra:
+      # - Homepage: Notes/NumericalAlgebra.md
+      - ch1-线性方程组的直接解法(Ax=b): Notes/NumericalAlgebra/ch1-线性方程组的直接解法(Ax=b).md
+      - ch2-敏度分析与误差分析: Notes/NumericalAlgebra/ch2-敏度分析与误差分析.md
+      - ch3-LeastSquare: Notes/NumericalAlgebra/ch3-LeastSquare.md
+      - ch4-古典迭代法: Notes/NumericalAlgebra/ch4-古典迭代法.md
+      - ch5-梯度法: Notes/NumericalAlgebra/ch5-梯度法.md
+      - ch6-非对称特征值问题的计算方法: Notes/NumericalAlgebra/ch6-非对称特征值问题的计算方法.md
+      - ch7-对称特征值问题的计算方法: Notes/NumericalAlgebra/ch7-对称特征值问题的计算方法.md
 
 
 markdown_extensions:

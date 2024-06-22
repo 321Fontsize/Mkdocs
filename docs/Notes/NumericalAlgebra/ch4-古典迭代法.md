@@ -129,6 +129,6 @@ $$
 
 此后$\omega$增加，$\rho$也随之增加。
 
-[Next-->Ch5](./ch5-共轭梯度法.md)
+[Next-->Ch5](./ch5-梯度法.md)
 
 [Numerical Algebra's homepage](../NumericalAlgebra.md)
