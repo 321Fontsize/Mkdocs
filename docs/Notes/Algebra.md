@@ -1,9 +1,5 @@
 # This is for Algebra
 
-[Go to Analysis](./Analysis.md)
-
-[Go to Numerical Algebra](./NumericalAlgebra.md)
-
 - 行列式
   - 行列式的递归定义
   - 行列式的数学意义

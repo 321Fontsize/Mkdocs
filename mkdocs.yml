@@ -11,7 +11,7 @@ nav:
     - Algebra: Notes/Algebra.md
     - Analysis: Notes/Analysis.md
     - NumericalAlgebra:
-      - Homepage of NLA: Notes/NumericalAlgebra.md
+      - Homepage: Notes/NumericalAlgebra.md
       - ch1: Notes/NumericalAlgebra/ch1-线性方程组的直接解法(Ax=b).md
       - ch2: Notes/NumericalAlgebra/ch2-敏度分析与误差分析.md
       - ch3: Notes/NumericalAlgebra/ch3-LeastSquare.md
@@ -19,6 +19,9 @@ nav:
       - ch5: Notes/NumericalAlgebra/ch5-梯度法.md
       - ch6: Notes/NumericalAlgebra/ch6-非对称特征值问题的计算方法.md
       - ch7: Notes/NumericalAlgebra/ch7-对称特征值问题的计算方法.md
+    - 优化实用算法:
+      - Homepage: Notes/优化实用算法.md
+      - 单纯形法: Notes/优化实用算法/单纯形法.md
 
 
 markdown_extensions:

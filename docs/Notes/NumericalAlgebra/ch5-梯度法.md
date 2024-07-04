@@ -204,13 +204,15 @@ $$
 ||x_k - x^* ||_A \leq 2(\frac{\sqrt{\kappa_2(A)} - 1}{\sqrt{\kappa_2(A)} + 1})^k ||x_0 - x^* ||_A,
 $$
 
-其中 $\kappa_2(A) = ||A||_2 ||A^{-1}||_2$.
+其中 $||x||_A = \sqrt{x^TA x}, \;\kappa_2(A) = ||A||_2 ||A^{-1}||_2$.
 
 ### 理论分析
 
 选择对称正定阵 $C$，使得 $\tilde{A} = C^{-T} A C^{-1}, \tilde{x} = Cx, \tilde{b} = C^{-T}b$，且我们希望 $\tilde{A}$ 具有良好的性质. 
 
-应用Standard CG于上述方程组，常规的做法是首先计算 $\tilde{A} = C^{-T} A C^{-1}, \tilde{x} = Cx, \tilde{b} = C^{-T}b$，并且在获得近似解 $\tilde{x}_k$ 之后需通过变换 $x_k = C^{-1}\tilde{x}_k$ 获取原方程的解. 实际上这些都是不必要的
+应用Standard CG于上述方程组，常规的做法是首先计算 $\tilde{A} = C^{-T} A C^{-1}, \tilde{x} = Cx, \tilde{b} = C^{-T}b$，并且在获得近似解 $\tilde{x}_k$ 之后需通过变换 $x_k = C^{-1}\tilde{x}_k$ 获取原方程的解. 
+
+实际上这些都是不必要的
 
 令
 

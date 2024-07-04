@@ -56,6 +56,25 @@ $$
 
 上述定理中的矩阵J称为A的Jordan标准形，其中每个子矩阵$J_i(\lambda_i)$称为Jordan块。
 
+An Example:
+
+$$
+\begin{aligned}
+J = \begin{bmatrix}
+2 & & & \\
+& 2& 1& \\
+& & 2& \\
+& & & 3&
+\end{bmatrix}
+\end{aligned},
+$$
+
+则 $A$ 共有2个互不相同的特征值$\lambda_1 = 2, \lambda_2 = 3$，其重数分别为 $3, 1$. 且 $J(\lambda_1) = \begin{bmatrix}
+   2 & &  \\
+& 2& 1 \\
+& & 2 \\
+\end{bmatrix}, J(\lambda_2) = [3] $.
+
 - **Schur分解定理**
 
   设$A \in \mathbb{C}^{n \times n}$，则存在酉矩阵$U \in \mathbb{C}^{n\times n}$，使得$U^* AU = T$，其中$T$是上三角阵。

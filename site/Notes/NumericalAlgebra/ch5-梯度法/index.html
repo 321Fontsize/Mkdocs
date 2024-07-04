@@ -351,7 +351,7 @@
         
   
   <span class="md-ellipsis">
-    Homepage of NLA
+    Homepage
   </span>
   
 
@@ -665,6 +665,91 @@
   
   <span class="md-ellipsis">
     ch7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    优化实用算法
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            优化实用算法
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BC%98%E5%8C%96%E5%AE%9E%E7%94%A8%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homepage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BC%98%E5%8C%96%E5%AE%9E%E7%94%A8%E7%AE%97%E6%B3%95/%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    单纯形法
   </span>
   
 
@@ -999,10 +1084,11 @@ r_k, \; p_k \in \mathcal{k}(A, r_0, k+1) = \text{span}\{r_0, Ar_0, \cdots, A^kr_
 <div class="arithmatex">\[
 ||x_k - x^* ||_A \leq 2(\frac{\sqrt{\kappa_2(A)} - 1}{\sqrt{\kappa_2(A)} + 1})^k ||x_0 - x^* ||_A,
 \]</div>
-<p>其中 <span class="arithmatex">\(\kappa_2(A) = ||A||_2 ||A^{-1}||_2\)</span>.</p>
+<p>其中 <span class="arithmatex">\(||x||_A = \sqrt{x^TA x}, \;\kappa_2(A) = ||A||_2 ||A^{-1}||_2\)</span>.</p>
 <h3 id="_6">理论分析</h3>
 <p>选择对称正定阵 <span class="arithmatex">\(C\)</span>，使得 <span class="arithmatex">\(\tilde{A} = C^{-T} A C^{-1}, \tilde{x} = Cx, \tilde{b} = C^{-T}b\)</span>，且我们希望 <span class="arithmatex">\(\tilde{A}\)</span> 具有良好的性质. </p>
-<p>应用Standard CG于上述方程组，常规的做法是首先计算 <span class="arithmatex">\(\tilde{A} = C^{-T} A C^{-1}, \tilde{x} = Cx, \tilde{b} = C^{-T}b\)</span>，并且在获得近似解 <span class="arithmatex">\(\tilde{x}_k\)</span> 之后需通过变换 <span class="arithmatex">\(x_k = C^{-1}\tilde{x}_k\)</span> 获取原方程的解. 实际上这些都是不必要的</p>
+<p>应用Standard CG于上述方程组，常规的做法是首先计算 <span class="arithmatex">\(\tilde{A} = C^{-T} A C^{-1}, \tilde{x} = Cx, \tilde{b} = C^{-T}b\)</span>，并且在获得近似解 <span class="arithmatex">\(\tilde{x}_k\)</span> 之后需通过变换 <span class="arithmatex">\(x_k = C^{-1}\tilde{x}_k\)</span> 获取原方程的解. </p>
+<p>实际上这些都是不必要的</p>
 <p>令</p>
 <div class="arithmatex">\[
 \forall x_0 \in \mathbb{R}^n,\; \tilde{x}_0 = C x_0, \;\;\text{Set}\;\; \tilde{r}_0 = \tilde{b} - \tilde{A}\tilde{x}_0 = C^{-T}r_0,\; \tilde{p}_0 = \tilde{r}_0,
