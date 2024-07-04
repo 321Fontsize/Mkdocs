@@ -73,7 +73,7 @@ $$
    2 & &  \\
 & 2& 1 \\
 & & 2 \\
-\end{bmatrix}, J(\lambda_2) = [3] $.
+\end{bmatrix}, J(\lambda_2) = [3]$.
 
 - **Schur分解定理**
 
