@@ -1,9 +1,5 @@
-# This is for Algebra
+# Algebra
 
-- 行列式
-  - 行列式的递归定义
-  - 行列式的数学意义
-  - 行列式的展开与Laplace定理
-  - 行列式的性质与计算：根据定义/加边/……
-- 逆序数的定义
-  - 逆序对的定义
+#### [1. Positive Definite](./Algebra/1-positive-definite.md)
+
+#### [2. Rank](./Algebra/2-rank.md)

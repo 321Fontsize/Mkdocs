@@ -8,7 +8,10 @@ nav:
   - Index: index.md
   - About: about.md
   - Notes:
-    - Algebra: Notes/Algebra.md
+    - Algebra: 
+      - Homepage: Notes/Algebra.md
+      - Positive Definite: Notes/Algebra/1-positive-definite.md
+      - Rank: Notes/Algebra/2-rank.md
     - Analysis: Notes/Analysis.md
     - NumericalAlgebra:
       - Homepage: Notes/NumericalAlgebra.md
