@@ -1,4 +1,4 @@
-# Welcome to MkDocs
+# Welcome to Fontsize's Page :)
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
@@ -8,6 +8,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 * `mkdocs serve` - Start the live-reloading docs server.
 * `mkdocs build` - Build the documentation site.
 * `mkdocs -h` - Print help message and exit.
+* `mkdocs gh-deploy` - Construct your own online page.
 
 ## Project layout
 

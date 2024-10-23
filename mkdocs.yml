@@ -1,30 +1,56 @@
 site_name: Fontsize's Page
+site_url: https://321fontsize.github.io/Mkdocs/
 
 theme:
-  # name: readthedocs
   name: material
+  custom_dir: overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  features:
+    - content.code.annotate
+    - content.action.edit
+    - navigation.tracking
+    - navigation.top
+    - navigation.tabs
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+  font:
+    code: Cascadia
+
 
 nav:
   - Index: index.md
   - About: about.md
-  - Notes:
-    - Algebra: 
-      - Homepage: Notes/Algebra.md
-      - Positive Definite: Notes/Algebra/1-positive-definite.md
-      - Rank: Notes/Algebra/2-rank.md
-    - Analysis: Notes/Analysis.md
-    - NumericalAlgebra:
-      - Homepage: Notes/NumericalAlgebra.md
-      - ch1: Notes/NumericalAlgebra/ch1-线性方程组的直接解法(Ax=b).md
-      - ch2: Notes/NumericalAlgebra/ch2-敏度分析与误差分析.md
-      - ch3: Notes/NumericalAlgebra/ch3-LeastSquare.md
-      - ch4: Notes/NumericalAlgebra/ch4-古典迭代法.md
-      - ch5: Notes/NumericalAlgebra/ch5-梯度法.md
-      - ch6: Notes/NumericalAlgebra/ch6-非对称特征值问题的计算方法.md
-      - ch7: Notes/NumericalAlgebra/ch7-对称特征值问题的计算方法.md
+  - Math-Notes:
+    - Math-Notes/index.md
+    - 代数: 
+      - Math-Notes/Algebra/index.md
+      - Positive Definite: Math-Notes/Algebra/1-positive-definite.md
+      - Rank: Math-Notes/Algebra/2-rank.md
+    - 分析: 
+      - Math-Notes/Analysis/index.md
+    - 数值线性代数:
+      - Math-Notes/NumericalAlgebra/index.md
+      - ch1: Math-Notes/NumericalAlgebra/ch1-线性方程组的直接解法(Ax=b).md
+      - ch2: Math-Notes/NumericalAlgebra/ch2-敏度分析与误差分析.md
+      - ch3: Math-Notes/NumericalAlgebra/ch3-LeastSquare.md
+      - ch4: Math-Notes/NumericalAlgebra/ch4-古典迭代法.md
+      - ch5: Math-Notes/NumericalAlgebra/ch5-梯度法.md
+      - ch6: Math-Notes/NumericalAlgebra/ch6-非对称特征值问题的计算方法.md
+      - ch7: Math-Notes/NumericalAlgebra/ch7-对称特征值问题的计算方法.md
     - 优化实用算法:
-      - Homepage: Notes/优化实用算法.md
-      - 单纯形法: Notes/优化实用算法/单纯形法.md
+      - Math-Notes/Optimize/index.md
+      - 单纯形法: Math-Notes/Optimize/simplex_algorithm.md
 
 
 markdown_extensions:
