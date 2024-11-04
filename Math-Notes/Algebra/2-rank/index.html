@@ -14,7 +14,7 @@
         <link rel="prev" href="../1-positive-definite/">
       
       
-        <link rel="next" href="../../Analysis/">
+        <link rel="next" href="../3-QRDecomposition/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -426,6 +426,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -509,6 +513,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Rank
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -519,6 +534,127 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      秩的各种定义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      行秩列秩相等性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="行秩列秩相等性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      证明一
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      证明二
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      证明三
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-rank-nullity-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      秩-零化度定理(Rank-nullity theorem)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-QRDecomposition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    QR Decomposition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-SchurDecomposition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Schur Decomposition
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -543,6 +679,8 @@
       
         
           
+        
+      
         
       
     
@@ -575,6 +713,11 @@
 
             </a>
             
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
           </div>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
@@ -584,6 +727,27 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analysis/1-dense_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dense Set
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
           </ul>
@@ -678,7 +842,7 @@
         
   
   <span class="md-ellipsis">
-    ch1
+    线性方程组的直接解法(Ax=b)
   </span>
   
 
@@ -699,7 +863,7 @@
         
   
   <span class="md-ellipsis">
-    ch2
+    敏度分析与误差分析
   </span>
   
 
@@ -720,7 +884,7 @@
         
   
   <span class="md-ellipsis">
-    ch3
+    最小二乘
   </span>
   
 
@@ -741,7 +905,7 @@
         
   
   <span class="md-ellipsis">
-    ch4
+    古典迭代法
   </span>
   
 
@@ -762,7 +926,7 @@
         
   
   <span class="md-ellipsis">
-    ch5
+    梯度法
   </span>
   
 
@@ -783,7 +947,7 @@
         
   
   <span class="md-ellipsis">
-    ch6
+    非对称特征值问题
   </span>
   
 
@@ -804,7 +968,7 @@
         
   
   <span class="md-ellipsis">
-    ch7
+    对称特征值问题
   </span>
   
 
@@ -939,6 +1103,74 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      秩的各种定义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      行秩列秩相等性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="行秩列秩相等性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      证明一
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      证明二
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      证明三
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-rank-nullity-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      秩-零化度定理(Rank-nullity theorem)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -957,6 +1189,18 @@
 <ul>
 <li><span class="arithmatex">\(\text{rank} (A+B) \leq \text{rank}(A) + \text{rank}(B)\)</span>.</li>
 </ul>
+<h2 id="_1">秩的各种定义</h2>
+<h2 id="_2">行秩列秩相等性</h2>
+<p>基本证明思路：</p>
+<p>列秩为像空间的维度，行秩为非零原像空间的维度</p>
+<ul>
+<li><span class="arithmatex">\(\text{column rank} = \dim \Im(A) = \dim \{Ax: x\in \mathbb{R}^{n}\}\)</span>.</li>
+<li><span class="arithmatex">\(\text{row rank} = \dim \{x\in\mathbb{R}^{n} : Ax\neq 0\}\)</span>.</li>
+</ul>
+<h3 id="_3">证明一</h3>
+<h3 id="_4">证明二</h3>
+<h3 id="_5">证明三</h3>
+<h2 id="-rank-nullity-theorem">秩-零化度定理(Rank-nullity theorem)</h2>
 
 
 
@@ -1032,13 +1276,13 @@ twikoo.init({
           
           
             
-            <a href="../../Analysis/" class="md-footer__link md-footer__link--next" aria-label="Next: This is for Analysis">
+            <a href="../3-QRDecomposition/" class="md-footer__link md-footer__link--next" aria-label="Next: QR Decomposition">
               <div class="md-footer__title">
                 <span class="md-footer__direction">
                   Next
                 </span>
                 <div class="md-ellipsis">
-                  This is for Analysis
+                  QR Decomposition
                 </div>
               </div>
               <div class="md-footer__button md-icon">
