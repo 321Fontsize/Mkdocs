@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://321fontsize.github.io/Mkdocs/Math-Notes/NumericalAlgebra/">
+        <link rel="canonical" href="https://321fontsize.github.io/Mkdocs/Math-Notes/Algebra/3-QRDecomposition/">
       
       
-        <link rel="prev" href="../Analysis/1-dense_set/">
+        <link rel="prev" href="../2-rank/">
       
       
-        <link rel="next" href="ch1-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%9B%B4%E6%8E%A5%E8%A7%A3%E6%B3%95%28Ax%3Db%29/">
+        <link rel="next" href="../4-SchurDecomposition/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
-        <title>Numerical Algebra - Fontsize's Page</title>
+        <title>QR Decomposition - Fontsize's Page</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -39,15 +39,15 @@
     
       
     
-    <!-- <script src="../../js/twikoo.min.js"></script>
+    <!-- <script src="../../../js/twikoo.min.js"></script>
     
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-        <script defer src="../../js/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-        <script defer src="../../js/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+        <script defer src="../../../js/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+        <script defer src="../../../js/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
     </head> -->
 
-    <script defer src="../../js/vercont.js"></script>
+    <script defer src="../../../js/vercont.js"></script>
 
     
       
@@ -59,7 +59,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#numerical-algebra" class="md-skip">
+        <a href="#qr-decomposition" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Fontsize&#39;s Page" class="md-header__button md-logo" aria-label="Fontsize's Page" data-md-component="logo">
+    <a href="../../.." title="Fontsize&#39;s Page" class="md-header__button md-logo" aria-label="Fontsize's Page" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Numerical Algebra
+              QR Decomposition
             
           </span>
         </div>
@@ -214,7 +214,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
     
@@ -231,7 +231,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../about/" class="md-tabs__link">
+      <a href="../../../about/" class="md-tabs__link">
         
   
     
@@ -252,7 +252,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+        <a href="../../" class="md-tabs__link">
           
   
     
@@ -287,7 +287,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Fontsize&#39;s Page" class="md-nav__button md-logo" aria-label="Fontsize's Page" data-md-component="logo">
+    <a href="../../.." title="Fontsize&#39;s Page" class="md-nav__button md-logo" aria-label="Fontsize's Page" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -305,7 +305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -325,7 +325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../../about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -381,7 +381,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -411,8 +411,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -439,16 +441,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Algebra/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -465,7 +467,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             代数
@@ -481,7 +483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Algebra/1-positive-definite/" class="md-nav__link">
+      <a href="../1-positive-definite/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -502,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Algebra/2-rank/" class="md-nav__link">
+      <a href="../2-rank/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -520,10 +522,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Algebra/3-QRDecomposition/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    QR Decomposition
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -532,6 +554,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-theorems" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Theorems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Theorems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thm-11-qr-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thm 1.1 QR Decomposition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thm-12-thin-qr-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thm 1.2 Thin QR Decomposition
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-computing-qr-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Computing QR Decomposition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Computing QR Decomposition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-householder-qr" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Householder QR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-gram-schmidt-qr" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Gram-Schmidt QR
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -544,7 +652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Algebra/4-SchurDecomposition/" class="md-nav__link">
+      <a href="../4-SchurDecomposition/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -601,7 +709,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Analysis/" class="md-nav__link ">
+            <a href="../../Analysis/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -634,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Analysis/1-dense_set/" class="md-nav__link">
+      <a href="../../Analysis/1-dense_set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -660,8 +768,6 @@
                 
   
   
-    
-  
   
   
     
@@ -696,16 +802,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../../NumericalAlgebra/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -716,13 +822,13 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_4">
             <span class="md-nav__icon md-icon"></span>
             数值线性代数
@@ -738,7 +844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ch1-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%9B%B4%E6%8E%A5%E8%A7%A3%E6%B3%95%28Ax%3Db%29/" class="md-nav__link">
+      <a href="../../NumericalAlgebra/ch1-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%9B%B4%E6%8E%A5%E8%A7%A3%E6%B3%95%28Ax%3Db%29/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -759,7 +865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ch2-%E6%95%8F%E5%BA%A6%E5%88%86%E6%9E%90%E4%B8%8E%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90/" class="md-nav__link">
+      <a href="../../NumericalAlgebra/ch2-%E6%95%8F%E5%BA%A6%E5%88%86%E6%9E%90%E4%B8%8E%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -780,7 +886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ch3-LeastSquare/" class="md-nav__link">
+      <a href="../../NumericalAlgebra/ch3-LeastSquare/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -801,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ch4-%E5%8F%A4%E5%85%B8%E8%BF%AD%E4%BB%A3%E6%B3%95/" class="md-nav__link">
+      <a href="../../NumericalAlgebra/ch4-%E5%8F%A4%E5%85%B8%E8%BF%AD%E4%BB%A3%E6%B3%95/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -822,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ch5-%E6%A2%AF%E5%BA%A6%E6%B3%95/" class="md-nav__link">
+      <a href="../../NumericalAlgebra/ch5-%E6%A2%AF%E5%BA%A6%E6%B3%95/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -843,7 +949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ch6-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E7%89%B9%E5%BE%81%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/" class="md-nav__link">
+      <a href="../../NumericalAlgebra/ch6-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E7%89%B9%E5%BE%81%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -864,7 +970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ch7-%E5%AF%B9%E7%A7%B0%E7%89%B9%E5%BE%81%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/" class="md-nav__link">
+      <a href="../../NumericalAlgebra/ch7-%E5%AF%B9%E7%A7%B0%E7%89%B9%E5%BE%81%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -921,7 +1027,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../Optimize/" class="md-nav__link ">
+            <a href="../../Optimize/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -954,7 +1060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Optimize/simplex_algorithm/" class="md-nav__link">
+      <a href="../../Optimize/simplex_algorithm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1010,65 +1116,68 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ch1-axb" class="md-nav__link">
+  <a href="#1-theorems" class="md-nav__link">
     <span class="md-ellipsis">
-      Ch1 线性方程组的直接解法(Ax=b)
+      1. Theorems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Theorems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thm-11-qr-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thm 1.1 QR Decomposition
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#ch2" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#thm-12-thin-qr-decomposition" class="md-nav__link">
     <span class="md-ellipsis">
-      Ch2 敏度分析与误差分析
+      Thm 1.2 Thin QR Decomposition
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#ch3-least-square" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ch3 最小二乘问题(Least Square)
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ch4" class="md-nav__link">
+  <a href="#2-computing-qr-decomposition" class="md-nav__link">
     <span class="md-ellipsis">
-      Ch4 古典迭代法
+      2. Computing QR Decomposition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Computing QR Decomposition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-householder-qr" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Householder QR
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#ch5" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#22-gram-schmidt-qr" class="md-nav__link">
     <span class="md-ellipsis">
-      Ch5 梯度法
+      2.2 Gram-Schmidt QR
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#ch6" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ch6 非对称特征值问题的计算方法
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ch7" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ch7 对称特征值问题的计算方法
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1087,14 +1196,41 @@
                   
 
 
-<h1 id="numerical-algebra">Numerical Algebra</h1>
-<h4 id="ch1-axb"><a href="ch1-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%9B%B4%E6%8E%A5%E8%A7%A3%E6%B3%95%28Ax%3Db%29/">Ch1 线性方程组的直接解法(Ax=b)</a></h4>
-<h4 id="ch2"><a href="ch2-%E6%95%8F%E5%BA%A6%E5%88%86%E6%9E%90%E4%B8%8E%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90/">Ch2 敏度分析与误差分析</a></h4>
-<h4 id="ch3-least-square"><a href="ch3-LeastSquare/">Ch3 最小二乘问题(Least Square)</a></h4>
-<h4 id="ch4"><a href="ch4-%E5%8F%A4%E5%85%B8%E8%BF%AD%E4%BB%A3%E6%B3%95/">Ch4 古典迭代法</a></h4>
-<h4 id="ch5"><a href="ch5-%E6%A2%AF%E5%BA%A6%E6%B3%95/">Ch5 梯度法</a></h4>
-<h4 id="ch6"><a href="ch6-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E7%89%B9%E5%BE%81%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/">Ch6 非对称特征值问题的计算方法</a></h4>
-<h4 id="ch7"><a href="ch7-%E5%AF%B9%E7%A7%B0%E7%89%B9%E5%BE%81%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/">Ch7 对称特征值问题的计算方法</a></h4>
+<h1 id="qr-decomposition">QR Decomposition</h1>
+<h2 id="1-theorems">1. Theorems</h2>
+<h3 id="thm-11-qr-decomposition">Thm 1.1 QR Decomposition</h3>
+<p>If <span class="arithmatex">\(A\in\mathbb{R}^{m\times n}\)</span>, then there exists an orthogonal <span class="arithmatex">\(Q\in\mathbb{R}^{m\times m}\)</span> and an upper triangular <span class="arithmatex">\(R\in\mathbb{R}^{m\times n}\)</span> such that <span class="arithmatex">\(A = QR\)</span>.</p>
+<p><strong><em>Proof.</em></strong></p>
+<ul>
+<li>For <span class="arithmatex">\(n=1\)</span>, let <span class="arithmatex">\(Q\)</span> be a Householder matrix w.r.t. <span class="arithmatex">\(A \in \mathbb{R}^{m\times 1}\)</span>: </li>
+</ul>
+<div class="arithmatex">\[v = A \pm \|A\|_2e_1, Q = I - \frac{2vv^{\top}}{v^{\top}v}, 
+\]</div>
+<p>and note that <span class="arithmatex">\(Q^{\top} = Q\)</span>, then <span class="arithmatex">\(R = Q^{\top}A\)</span> with <span class="arithmatex">\(R(2:m)=0\)</span>.</p>
+<ul>
+<li>For general <span class="arithmatex">\(n\)</span>, let <span class="arithmatex">\(A = [A_1|u]\)</span> with <span class="arithmatex">\(u = A(:,n)\)</span> and <span class="arithmatex">\(A_1\in\mathbb{R}^{m\times(n-1)}\)</span>.<p>By induction, there exists an orthogonal <span class="arithmatex">\(Q_1\in\mathbb{R}^{m\times m}\)</span> such that <span class="arithmatex">\(R_1 = Q_1^{\top}A_1\)</span> is upper triangular, which implies that if <span class="arithmatex">\(R_1 = \begin{bmatrix}R_{11}\\R_{12}\end{bmatrix}\)</span> with <span class="arithmatex">\(R_{11}\in\mathbb{R}^{m\times m}\)</span>, then <span class="arithmatex">\(R_{12}=0\)</span>.  </p>
+<p>Set <span class="arithmatex">\(w = Q_1^{\top}u\)</span>, i.e., <span class="arithmatex">\(u = Q_1 w\)</span>.</p>
+<p>Let <span class="arithmatex">\(u(n:m) = Q_2R_2\)</span> be the QR Decomposition of <span class="arithmatex">\(u(n:m)\)</span>. </p>
+<p>If <span class="arithmatex">\(Q := Q_1\begin{bmatrix}I_{n-1}&amp; 0\\ 0&amp; Q_2\end{bmatrix}\)</span>, <span class="arithmatex">\(R := \begin{bmatrix}R_{11}&amp; w(1:n-1)\\ R_{12}&amp;R_2 \end{bmatrix}\)</span>, then <span class="arithmatex">\(Q\)</span> is orthogonal and <span class="arithmatex">\(R\)</span> is upper triangular and  </p>
+</li>
+</ul>
+<div class="arithmatex">\[
+\begin{aligned}
+QR &amp;= Q_1 \begin{bmatrix}I_{n-1}&amp; 0\\ 0&amp; Q_2\end{bmatrix}\begin{bmatrix}R_{11}&amp; w(1:n-1)\\ R_{12}&amp;R_2 \end{bmatrix}\\
+&amp;= Q_1 \begin{bmatrix}R_{11}&amp; w(1:n-1)\\ 0 &amp; Q_2R_2=w(n:m) \end{bmatrix}\\
+&amp;= [A_1|u]= A,
+\end{aligned}
+\]</div>
+<p>which completes the proof. <span class="arithmatex">\(\blacksquare\)</span></p>
+<h3 id="thm-12-thin-qr-decomposition">Thm 1.2 Thin QR Decomposition</h3>
+<p>If <span class="arithmatex">\(A\in\mathbb{R}^{m\times n}\)</span> has full column rank, then there exists a unique QR Decomposition </p>
+<div class="arithmatex">\[
+A = Q_1 R_1
+\]</div>
+<p>with <span class="arithmatex">\(Q\in\mathbb{R}^{m\times m}\)</span> has orthonormal columns and <span class="arithmatex">\(R\in\mathbb{R}^{m\times n}\)</span> is upper triangular with positive diagonal entries.</p>
+<h2 id="2-computing-qr-decomposition">2. Computing QR Decomposition</h2>
+<h3 id="21-householder-qr">2.1 Householder QR</h3>
+<h3 id="22-gram-schmidt-qr">2.2 Gram-Schmidt QR</h3>
 
 
 
@@ -1153,7 +1289,7 @@ twikoo.init({
         <nav class="md-footer__inner md-grid" aria-label="Footer" >
           
             
-            <a href="../Analysis/1-dense_set/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dense Set">
+            <a href="../2-rank/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Rank">
               <div class="md-footer__button md-icon">
                 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1163,20 +1299,20 @@ twikoo.init({
                   Previous
                 </span>
                 <div class="md-ellipsis">
-                  Dense Set
+                  Rank
                 </div>
               </div>
             </a>
           
           
             
-            <a href="ch1-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E7%9B%B4%E6%8E%A5%E8%A7%A3%E6%B3%95%28Ax%3Db%29/" class="md-footer__link md-footer__link--next" aria-label="Next: 线性方程组的直接解法(Ax=b)">
+            <a href="../4-SchurDecomposition/" class="md-footer__link md-footer__link--next" aria-label="Next: Schur Decomposition">
               <div class="md-footer__title">
                 <span class="md-footer__direction">
                   Next
                 </span>
                 <div class="md-ellipsis">
-                  线性方程组的直接解法(Ax=b)
+                  Schur Decomposition
                 </div>
               </div>
               <div class="md-footer__button md-icon">
@@ -1217,12 +1353,12 @@ twikoo.init({
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.action.edit", "navigation.tracking", "navigation.top", "navigation.tabs", "navigation.footer", "navigation.indexes", "navigation.sections"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.action.edit", "navigation.tracking", "navigation.top", "navigation.tabs", "navigation.footer", "navigation.indexes", "navigation.sections"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
-        <script src="../../javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

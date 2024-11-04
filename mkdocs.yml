@@ -37,17 +37,20 @@ nav:
       - Math-Notes/Algebra/index.md
       - Positive Definite: Math-Notes/Algebra/1-positive-definite.md
       - Rank: Math-Notes/Algebra/2-rank.md
+      - QR Decomposition: Math-Notes/Algebra/3-QRDecomposition.md
+      - Schur Decomposition: Math-Notes/Algebra/4-SchurDecomposition.md
     - 分析: 
       - Math-Notes/Analysis/index.md
+      - Dense Set: Math-Notes/Analysis/1-dense_set.md
     - 数值线性代数:
       - Math-Notes/NumericalAlgebra/index.md
-      - ch1: Math-Notes/NumericalAlgebra/ch1-线性方程组的直接解法(Ax=b).md
-      - ch2: Math-Notes/NumericalAlgebra/ch2-敏度分析与误差分析.md
-      - ch3: Math-Notes/NumericalAlgebra/ch3-LeastSquare.md
-      - ch4: Math-Notes/NumericalAlgebra/ch4-古典迭代法.md
-      - ch5: Math-Notes/NumericalAlgebra/ch5-梯度法.md
-      - ch6: Math-Notes/NumericalAlgebra/ch6-非对称特征值问题的计算方法.md
-      - ch7: Math-Notes/NumericalAlgebra/ch7-对称特征值问题的计算方法.md
+      - 线性方程组的直接解法(Ax=b): Math-Notes/NumericalAlgebra/ch1-线性方程组的直接解法(Ax=b).md
+      - 敏度分析与误差分析: Math-Notes/NumericalAlgebra/ch2-敏度分析与误差分析.md
+      - 最小二乘: Math-Notes/NumericalAlgebra/ch3-LeastSquare.md
+      - 古典迭代法: Math-Notes/NumericalAlgebra/ch4-古典迭代法.md
+      - 梯度法: Math-Notes/NumericalAlgebra/ch5-梯度法.md
+      - 非对称特征值问题: Math-Notes/NumericalAlgebra/ch6-非对称特征值问题的计算方法.md
+      - 对称特征值问题: Math-Notes/NumericalAlgebra/ch7-对称特征值问题的计算方法.md
     - 优化实用算法:
       - Math-Notes/Optimize/index.md
       - 单纯形法: Math-Notes/Optimize/simplex_algorithm.md
