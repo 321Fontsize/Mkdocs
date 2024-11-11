@@ -39,6 +39,7 @@ nav:
       - Rank: Math-Notes/Algebra/2-rank.md
       - QR Decomposition: Math-Notes/Algebra/3-QRDecomposition.md
       - Schur Decomposition: Math-Notes/Algebra/4-SchurDecomposition.md
+      - Perturbations: Math-Notes/Algebra/5-Perturbations.md
     - 分析: 
       - Math-Notes/Analysis/index.md
       - Dense Set: Math-Notes/Analysis/1-dense_set.md
