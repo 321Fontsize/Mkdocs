@@ -22,7 +22,7 @@
     
     
       
-        <title>QR Decomposition - Fontsize's Page</title>
+        <title>QR分解 - Fontsize's Page</title>
       
     
     
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              QR Decomposition
+              QR分解
             
           </span>
         </div>
@@ -432,6 +432,8 @@
       
         
       
+        
+      
     
     
       
@@ -489,7 +491,7 @@
         
   
   <span class="md-ellipsis">
-    Positive Definite
+    正定
   </span>
   
 
@@ -510,7 +512,7 @@
         
   
   <span class="md-ellipsis">
-    Rank
+    秩
   </span>
   
 
@@ -540,7 +542,7 @@
           
   
   <span class="md-ellipsis">
-    QR Decomposition
+    QR分解
   </span>
   
 
@@ -551,7 +553,7 @@
         
   
   <span class="md-ellipsis">
-    QR Decomposition
+    QR分解
   </span>
   
 
@@ -573,28 +575,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-theorems" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Theorems
+      1. 定理
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Theorems">
+    <nav class="md-nav" aria-label="1. 定理">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#thm-11-qr-decomposition" class="md-nav__link">
+  <a href="#11-qr-decomposition" class="md-nav__link">
     <span class="md-ellipsis">
-      Thm 1.1 QR Decomposition
+      定理 1.1 QR Decomposition
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#thm-12-thin-qr-decomposition" class="md-nav__link">
+  <a href="#12-thin-qr-decomposition" class="md-nav__link">
     <span class="md-ellipsis">
-      Thm 1.2 Thin QR Decomposition
+      定理 1.2 Thin QR Decomposition
     </span>
   </a>
   
@@ -658,7 +660,7 @@
         
   
   <span class="md-ellipsis">
-    Schur Decomposition
+    Schur分解
   </span>
   
 
@@ -675,11 +677,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../5-Perturbations/" class="md-nav__link">
+      <a href="../5-matrix-norm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Perturbations
+    矩阵范数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-Perturbations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    矩阵可逆与范数之间的关系-矩阵扰动
   </span>
   
 
@@ -1139,28 +1162,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-theorems" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Theorems
+      1. 定理
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Theorems">
+    <nav class="md-nav" aria-label="1. 定理">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#thm-11-qr-decomposition" class="md-nav__link">
+  <a href="#11-qr-decomposition" class="md-nav__link">
     <span class="md-ellipsis">
-      Thm 1.1 QR Decomposition
+      定理 1.1 QR Decomposition
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#thm-12-thin-qr-decomposition" class="md-nav__link">
+  <a href="#12-thin-qr-decomposition" class="md-nav__link">
     <span class="md-ellipsis">
-      Thm 1.2 Thin QR Decomposition
+      定理 1.2 Thin QR Decomposition
     </span>
   </a>
   
@@ -1220,23 +1243,20 @@
 
 
 <h1 id="qr-decomposition">QR Decomposition</h1>
-<h2 id="1-theorems">1. Theorems</h2>
-<h3 id="thm-11-qr-decomposition">Thm 1.1 QR Decomposition</h3>
-<p>If <span class="arithmatex">\(A\in\mathbb{R}^{m\times n}\)</span>, then there exists an orthogonal <span class="arithmatex">\(Q\in\mathbb{R}^{m\times m}\)</span> and an upper triangular <span class="arithmatex">\(R\in\mathbb{R}^{m\times n}\)</span> such that <span class="arithmatex">\(A = QR\)</span>.</p>
-<p><strong><em>Proof.</em></strong></p>
-<ul>
-<li>For <span class="arithmatex">\(n=1\)</span>, let <span class="arithmatex">\(Q\)</span> be a Householder matrix w.r.t. <span class="arithmatex">\(A \in \mathbb{R}^{m\times 1}\)</span>: </li>
-</ul>
-<div class="arithmatex">\[v = A \pm \|A\|_2e_1, Q = I - \frac{2vv^{\top}}{v^{\top}v}, 
+<h2 id="1">1. 定理</h2>
+<h3 id="11-qr-decomposition">定理 1.1 QR Decomposition</h3>
+<p>如果 <span class="arithmatex">\(A\in\mathbb{R}^{m\times n}\)</span>，则存在一个正交矩阵 <span class="arithmatex">\(Q\in\mathbb{R}^{m\times m}\)</span> 和一个上三角矩阵 <span class="arithmatex">\(R\in\mathbb{R}^{m\times n}\)</span> 使得 <span class="arithmatex">\(A = QR\)</span>。</p>
+<p><strong><em>证明</em></strong></p>
+<p>对于 <span class="arithmatex">\(n=1\)</span>，设 <span class="arithmatex">\(Q\)</span> 是相对于 <span class="arithmatex">\(A \in \mathbb{R}^{m\times 1}\)</span> 的 Householder 矩阵：</p>
+<div class="arithmatex">\[
+v = A \pm \|A\|_2e_1, Q = I - \frac{2vv^{\top}}{v^{\top}v}
 \]</div>
-<p>and note that <span class="arithmatex">\(Q^{\top} = Q\)</span>, then <span class="arithmatex">\(R = Q^{\top}A\)</span> with <span class="arithmatex">\(R(2:m)=0\)</span>.</p>
-<ul>
-<li>For general <span class="arithmatex">\(n\)</span>, let <span class="arithmatex">\(A = [A_1|u]\)</span> with <span class="arithmatex">\(u = A(:,n)\)</span> and <span class="arithmatex">\(A_1\in\mathbb{R}^{m\times(n-1)}\)</span>.<p>By induction, there exists an orthogonal <span class="arithmatex">\(Q_1\in\mathbb{R}^{m\times m}\)</span> such that <span class="arithmatex">\(R_1 = Q_1^{\top}A_1\)</span> is upper triangular, which implies that if <span class="arithmatex">\(R_1 = \begin{bmatrix}R_{11}\\R_{12}\end{bmatrix}\)</span> with <span class="arithmatex">\(R_{11}\in\mathbb{R}^{m\times m}\)</span>, then <span class="arithmatex">\(R_{12}=0\)</span>.  </p>
-<p>Set <span class="arithmatex">\(w = Q_1^{\top}u\)</span>, i.e., <span class="arithmatex">\(u = Q_1 w\)</span>.</p>
-<p>Let <span class="arithmatex">\(u(n:m) = Q_2R_2\)</span> be the QR Decomposition of <span class="arithmatex">\(u(n:m)\)</span>. </p>
-<p>If <span class="arithmatex">\(Q := Q_1\begin{bmatrix}I_{n-1}&amp; 0\\ 0&amp; Q_2\end{bmatrix}\)</span>, <span class="arithmatex">\(R := \begin{bmatrix}R_{11}&amp; w(1:n-1)\\ R_{12}&amp;R_2 \end{bmatrix}\)</span>, then <span class="arithmatex">\(Q\)</span> is orthogonal and <span class="arithmatex">\(R\)</span> is upper triangular and  </p>
-</li>
-</ul>
+<p>并注意到 <span class="arithmatex">\(Q^{\top} = Q\)</span>，那么 <span class="arithmatex">\(R = Q^{\top}A\)</span> 且 <span class="arithmatex">\(R(2:m)=0\)</span>。</p>
+<p>对于一般的 <span class="arithmatex">\(n\)</span>，设 <span class="arithmatex">\(A = [A_1|u]\)</span> 其中 <span class="arithmatex">\(u = A(:,n)\)</span> 且 <span class="arithmatex">\(A_1\in\mathbb{R}^{m\times(n-1)}\)</span>。</p>
+<p>通过归纳，存在一个正交矩阵 <span class="arithmatex">\(Q_1\in\mathbb{R}^{m\times m}\)</span> 使得 <span class="arithmatex">\(R_1 = Q_1^{\top}A_1\)</span> 是上三角的，这意味着如果 <span class="arithmatex">\(R_1 = \begin{bmatrix}R_{11}\\R_{12}\end{bmatrix}\)</span> 其中 <span class="arithmatex">\(R_{11}\in\mathbb{R}^{m\times m}\)</span>，那么 <span class="arithmatex">\(R_{12}=0\)</span>。  </p>
+<p>设 <span class="arithmatex">\(w = Q_1^{\top}u\)</span>，即 <span class="arithmatex">\(u = Q_1 w\)</span>。</p>
+<p>设 <span class="arithmatex">\(u(n:m) = Q_2R_2\)</span> 是 <span class="arithmatex">\(u(n:m)\)</span> 的 QR 分解。</p>
+<p>如果 <span class="arithmatex">\(Q := Q_1\begin{bmatrix}I_{n-1}&amp; 0\\ 0&amp; Q_2\end{bmatrix}\)</span>，<span class="arithmatex">\(R := \begin{bmatrix}R_{11}&amp; w(1:n-1)\\ R_{12}&amp;R_2 \end{bmatrix}\)</span>，那么 <span class="arithmatex">\(Q\)</span> 是正交的，<span class="arithmatex">\(R\)</span> 是上三角的，且</p>
 <div class="arithmatex">\[
 \begin{aligned}
 QR &amp;= Q_1 \begin{bmatrix}I_{n-1}&amp; 0\\ 0&amp; Q_2\end{bmatrix}\begin{bmatrix}R_{11}&amp; w(1:n-1)\\ R_{12}&amp;R_2 \end{bmatrix}\\
@@ -1244,13 +1264,13 @@ QR &amp;= Q_1 \begin{bmatrix}I_{n-1}&amp; 0\\ 0&amp; Q_2\end{bmatrix}\begin{bmat
 &amp;= [A_1|u]= A,
 \end{aligned}
 \]</div>
-<p>which completes the proof. <span class="arithmatex">\(\blacksquare\)</span></p>
-<h3 id="thm-12-thin-qr-decomposition">Thm 1.2 Thin QR Decomposition</h3>
-<p>If <span class="arithmatex">\(A\in\mathbb{R}^{m\times n}\)</span> has full column rank, then there exists a unique QR Decomposition </p>
+<p>这完成了证明。 <span class="arithmatex">\(\blacksquare\)</span></p>
+<h3 id="12-thin-qr-decomposition">定理 1.2 Thin QR Decomposition</h3>
+<p>如果 <span class="arithmatex">\(A\in\mathbb{R}^{m\times n}\)</span> 具有完全列秩，那么存在唯一的 QR 分解 </p>
 <div class="arithmatex">\[
 A = Q_1 R_1
 \]</div>
-<p>with <span class="arithmatex">\(Q\in\mathbb{R}^{m\times m}\)</span> has orthonormal columns and <span class="arithmatex">\(R\in\mathbb{R}^{m\times n}\)</span> is upper triangular with positive diagonal entries.</p>
+<p>其中 <span class="arithmatex">\(Q\in\mathbb{R}^{m\times m}\)</span> 具有正交列，<span class="arithmatex">\(R\in\mathbb{R}^{m\times n}\)</span> 是上三角的，且对角线元素为正。</p>
 <h2 id="2-computing-qr-decomposition">2. Computing QR Decomposition</h2>
 <h3 id="21-householder-qr">2.1 Householder QR</h3>
 <h3 id="22-gram-schmidt-qr">2.2 Gram-Schmidt QR</h3>
@@ -1312,7 +1332,7 @@ twikoo.init({
         <nav class="md-footer__inner md-grid" aria-label="Footer" >
           
             
-            <a href="../2-rank/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Rank">
+            <a href="../2-rank/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 秩">
               <div class="md-footer__button md-icon">
                 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1322,20 +1342,20 @@ twikoo.init({
                   Previous
                 </span>
                 <div class="md-ellipsis">
-                  Rank
+                  秩
                 </div>
               </div>
             </a>
           
           
             
-            <a href="../4-SchurDecomposition/" class="md-footer__link md-footer__link--next" aria-label="Next: Schur Decomposition">
+            <a href="../4-SchurDecomposition/" class="md-footer__link md-footer__link--next" aria-label="Next: Schur分解">
               <div class="md-footer__title">
                 <span class="md-footer__direction">
                   Next
                 </span>
                 <div class="md-ellipsis">
-                  Schur Decomposition
+                  Schur分解
                 </div>
               </div>
               <div class="md-footer__button md-icon">
