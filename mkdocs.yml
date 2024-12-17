@@ -35,11 +35,12 @@ nav:
     - Math-Notes/index.md
     - 代数: 
       - Math-Notes/Algebra/index.md
-      - Positive Definite: Math-Notes/Algebra/1-positive-definite.md
-      - Rank: Math-Notes/Algebra/2-rank.md
-      - QR Decomposition: Math-Notes/Algebra/3-QRDecomposition.md
-      - Schur Decomposition: Math-Notes/Algebra/4-SchurDecomposition.md
-      - Perturbations: Math-Notes/Algebra/5-Perturbations.md
+      - 正定: Math-Notes/Algebra/1-positive-definite.md
+      - 秩: Math-Notes/Algebra/2-rank.md
+      - QR分解: Math-Notes/Algebra/3-QRDecomposition.md
+      - Schur分解: Math-Notes/Algebra/4-SchurDecomposition.md
+      - 矩阵范数: Math-Notes/Algebra/5-matrix-norm.md
+      - 矩阵可逆与范数之间的关系-矩阵扰动: Math-Notes/Algebra/6-Perturbations.md
     - 分析: 
       - Math-Notes/Analysis/index.md
       - Dense Set: Math-Notes/Analysis/1-dense_set.md

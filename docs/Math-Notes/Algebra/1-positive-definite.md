@@ -1,10 +1,10 @@
 # Positive Definite
 
-## 1. Definition
+## 1. 定义
 
 A is positive definite if $\forall x \neq 0\in \mathbb{R}^n, x^TAx > 0$.
 
-## 2. Equivalence
+## 2. 等价性
 
 以下命题等价：
 
@@ -27,5 +27,5 @@ A is positive definite if $\forall x \neq 0\in \mathbb{R}^n, x^TAx > 0$.
 
 对于实对称矩阵，只需将上述性质中的 $\mathbb{C}^n$ 改为 $\mathbb{R}^n$，并将“共轭转置”改为“转置”即可.
 
-## 3. Properties
+## 3. 性质
 
