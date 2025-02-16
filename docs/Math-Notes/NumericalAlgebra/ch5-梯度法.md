@@ -1,51 +1,151 @@
 # Ch5 梯度法
 
-## 5.1 最速下降法
+## 5.1 最优化问题
+
+定义二次泛函 $\phi(x) = x^TAx - 2b^Tx$，若 $A$ 对称正定，则求解 $Ax = b$ 的解等价于求解二次泛函 $\phi(x)$ 的极小值点。
+
+***Proof.***
+
+$\phi(x)$是凸函数，其梯度为 $\nabla \phi(x) = Ax - b$. 设 $x_*$ 为方程 $Ax = b$ 的解，$x_c$ 为函数 $\phi$ 的最小化点，定义 $A$-范数为
+
+$$
+\|v\|_A = \sqrt{v^T A v}.
+$$
+
+由于
+
+$$
+\phi(x_c) = \frac{1}{2} x_c^T A x_c - x_c^T b = \frac{1}{2} (x_c - x_*)^T A (x_c - x_*) - \frac{1}{2} b^T A^{-1} b
+$$
+
+且
+
+$$
+\phi(x_*) = -\frac{1}{2} b^T A^{-1} b,
+$$
+
+因此可得
+
+$$
+\phi(x_c) = \frac{1}{2} \|x_c - x_*\|_A^2 + \phi(x_*).
+$$
+
+故产生一系列逐次更优的 $\phi$ 的近似最小化点的迭代过程，亦即产生一系列逐次更优的 $Ax = b$ 的近似解的迭代过程，这些近似解以 $A$-范数衡量。$\blacksquare$
+
+
+## 5.2 最速下降法
 
 亦称梯度下降法
 
-### 理论分析
+### 分析
 
-- 定义二次泛函$\psi(x) = x^TAx - 2b^Tx$，若A对称正定，则求解$Ax = b$的解等价于求解二次泛函$\psi(x)$的极小值点。
+改进的近似最小化点 $x_+$ 由下式给出
 
-- 求解思路：给定任意向量$x_{0}$，依次求$x_{1}, x_{2}, \cdots$，s.t. $\psi (x_{k+1}) < \psi(x_{k})$
+\[
+x_+ = x_c - \mu_cg_c,
+\]
 
-  $\rightarrow$给定$x_{0}$，确定一个下降方向 $p_0$，在直线$x_{0} + \alpha p_{0}$上求$\psi(x)$的极小值点$x_{1} = x_0 + \alpha_0 p_0$，i.e.，确定 $\alpha_0 = \mathop{\arg \min }\limits_{\alpha \in \mathbb{R}}\psi(x_0 + \alpha p_0)$；
+其中 $g_c = Ax_c - b$ 是当前梯度，$\mu_c$ 解决 
 
-  $\rightarrow$给定 $x_1$，确定一个下降方向 $p_1$，$\cdots$
+\[
+\min_{\mu\in\mathbb{R}}\phi(x_c - \mu g_c).
+\]
 
-- 问题转化为两要点：
-  - 如何确定方向序列$\{ p_{k}\}$；
-  - 如何求得步长序列$\{\alpha_k\}$。这里步长的确定一般依靠线搜索方法。
+$\mu_c$ 的表达式是 $\frac{g_c^Tg_c}{g_c^T A g_c}$
+
+***Proof.***
+
+由于
+
+\[
+\begin{aligned}
+  \phi(x_c-\mu g_c) &=\frac{1}{2}(x_c-\mu g_c)^T A (x_c-\mu g_c) - (x_c - \mu g_c)^T b\\
+  &= \frac{1}{2}\mu^2g_c^TAg_c - \mu g_c^T[Ax_c - b]\\
+  &= \frac{1}{2}\mu^2g_c^TAg_c - \mu g_c^Tg_c,
+\end{aligned}
+\]
+
+且 $\frac{\partial \phi}{\partial \mu} = \mu g_c^T A g_c - g_c^T g_c$，令 $\frac{\partial \phi}{\partial \mu} = 0$，则 $\mu_c = \frac{g_c^T g_c}{g_c^T A g_c}$。$\blacksquare$
+
+现在我们有
+
+\[
+\begin{aligned}
+\phi(x+) &= \phi(x_c - \mu_c g_c)\\
+&= \frac{1}{2}x_c^T Ax_c - x_c^T b + \frac{1}{2}\mu^2 g_c^T A g_c - \mu g_c^T g_c\\
+&= \phi(x_c) - \frac{1}{2}\frac{(g_c^T g_c)^2}{g_c^T A g_c}.
+\end{aligned}
+\]
+
+因此，如果 $g_c \neq 0$，目标函数是减小的。为了建立该方法的全局收敛性，定义
+
+\[
+\kappa_c = \frac{g_c^T A g_c}{g_c^T g_c} \cdot \frac{g_c^T A^{-1} g_c}{g_c^T g_c}
+\]
+
+并观察到 $g_c^T A^{-1} g_c = 2\phi(x_c) + b^T A^{-1} b$ 和
+
+\[
+\phi(x_+) = \phi(x_c) - \frac{1}{2} \frac{1}{\kappa_c} g_c^T A^{-1} g_c = \phi(x_c) - \frac{1}{\kappa_c} \left( \phi(x_c) + \frac{1}{2} b^T A^{-1} b \right).
+\]
+
+如果 $\lambda_{\max}(A)$ 和 $\lambda_{\min}(A)$ 是 $A$ 的最大和最小特征值，那么我们有
+
+\[
+\kappa_c = \frac{g_c^T A g_c}{g_c^T g_c} \cdot \frac{g_c^T A^{-1} g_c}{g_c^T g_c} \leq \frac{\lambda_{\max}(A)}{\lambda_{\min}(A)} = \kappa_2(A).
+\]
+
+如果我们从 (11.3.8) 两边减去 $\phi(x_*) = -(b^T A^{-1} b)/2$ 并使用 (11.3.5)，那么我们得到
+
+\[
+\| x_+ - x_* \|_A^2 \leq \left( 1 - \frac{1}{\kappa_2(A)} \right) \| x_c - x_* \|_A^2.
+\]
+
+由此通过归纳可知，具有精确线搜索的最速下降法是全局收敛的。
 
 ### 算法
 
-**Set** $x_{0} \in \mathbb{R}^n, p_{0} = r_{0} = b - Ax_{0}, k = 0,$
+**Set** $x_{0} \in \mathbb{R}^n, r_{0} = Ax_0 - b, k = 0$
 
 **while $r_{k}\neq 0$, repeat**
 
-  &emsp;&emsp;$\alpha_k = \frac{ r_{k}^Tr_{k}}{ r_{k}^TAr_{k}}$
+  &emsp;&emsp;$\mu_k = \frac{ r_{k}^Tr_{k}}{ r_{k}^TAr_{k}}$
 
-  &emsp;&emsp;$x_{k+1} = x_{k} + \alpha_k r_{k}$
+  &emsp;&emsp;$x_{k+1} = x_{k} - \mu_k r_{k}$
 
-  &emsp;&emsp;$r_{k+1} = b - Ax_{k+1}$
+  &emsp;&emsp;$r_{k+1} =  Ax_{k+1} - b$
 
   &emsp;&emsp;$k \leftarrow k+1$
   
 **end(while)**
 
-## 5.2 共轭梯度法(Conjugate Gradient)
+## 5.3 共轭梯度法(Conjugate Gradient)
 
-### 与最速下降法的异同
+### 理论分析 - A subspace strategy
 
-- 相同点：第一步仍然要取$x_{0} \in \mathbb{R}^n, r_{0} = b- Ax_{0}$；
-- 不同点：在第$k+1(k \geq 1)$步中，“下降”方向不再取负梯度方向。CG的下降方向的选取策略如下：在过点$x_{k}$由向量$r_{k}$和$p_{k-1}$所张成的平面内选取$\psi(x)$下降最快的方向：$\pi = \{x = x_{k} + \xi r_{k} + \eta p_{k-1}: \xi, \eta \in \mathbb{R} \}$
+定义 $v + S = \{x: x=v+s, s\in S\}$（我们可以发现最速下降法在第 $k$ 步对仿射空间 $x_k + \text{span}\{\nabla\phi(x_k)\}$ 进行优化）
 
-### 标准共轭梯度法(Standard CG)
+给定 $x_0: Ax_0 \approx b$，我们的目标是找到 $\begin{cases}S_1\subset S_2\subset S_3\subset\cdots\\ \text{dim}(S_k)=k\end{cases}$ 来解决每一步的 $\min_{x\in x_0 + S_k} \phi(x)$。
 
-目标函数为$f(x) = \frac{1}{2}x^T A x  - b^T x$，故梯度为$\nabla f(x) = Ax - b$，则下降方向要取负梯度$p = r = b - Ax$。
+如果 $x_k$ 是第 $k$ 步的最小化点，由于嵌套性质，则有
 
-### 算法
+\[
+\phi(x_1)\geq \phi(x_2) \geq \cdots \geq \phi(x_n) = \phi(x_*).
+\]
+
+接下来我们希望找到一个子空间，以促进 $\phi$ 值的快速减小。由于 $\phi$ 在负梯度方向上减小最快，因此在 $x_k$ 处，我们选择包含 $x_k$ 和 $\nabla\phi(x_k) = Ax_k-b$ 的 $S_k$，则有
+
+\[
+\phi(x_{k+1}) \triangleq \min_{x\in x_0 + S_{k+1}}\phi(x) \leq \min_{\mu\in\mathbb{R}}\phi(x_k-\mu g_k)
+\]
+
+如果 $x_0$ 是一个初始猜测，并且我们定义 $g_0 = Ax_0 - b$，那么由于 $\nabla\phi(x_k) \in \text{span}\{x_k, Ax_k\}$ 可以得出满足这一要求的唯一方法是设置 
+
+\[
+S_k = \mathcal{K}(A,g_0,k) = \text{span}\{g_0, Ag_0, \cdots, A^{k-1}g_0\}.
+\]
+
+### 标准共轭梯度法(Standard CG)算法
 
 $\forall x_{0}$, **set** $r_{0} = b - Ax_{0}, p_{0} = r_{0}, k =0,$
 
@@ -190,7 +290,7 @@ $$
 
 综上所述，由归纳法原理知定理得证.
 
-## 5.3 预优共轭梯度法(Preconditioned CG)
+## 5.4 预优共轭梯度法(Preconditioned CG)
 
 ### 想法来源
 

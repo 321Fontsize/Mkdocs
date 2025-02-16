@@ -259,7 +259,7 @@ A^HAx = \sum_{i=1}^n \xi_i A^HAx_i = \sum_{i=1}^n \lambda_i \xi_i x_i,
 \|A\|_2 = \max_{\|x\|_2 = 1} \|Ax\|_2 \leq \sqrt{\lambda_i}.
 \]
 
-另一方面，由于 $\|x\|_2=1$，而且 \(\|Ax\|_2^2 = \lambda_1 \)，所以 \( \|A\|_2 = \max_{\|x\|_2=1}\|Ax\|_2 \geq  \sqrt{\lambda_1} \)，因此(2)式成立。
+另一方面，由于 $\|x_1\|_2=1$，而且 \(\|Ax_1\|_2^2 = \lambda_1 \)，所以 \( \|A\|_2 = \max_{\|x\|_2=1}\|Ax\|_2 \geq  \sqrt{\lambda_1} \)，因此(2)式成立。
 
 (3) 设 $\|x\|_{\infty}=1$，则
 
